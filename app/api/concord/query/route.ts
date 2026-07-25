@@ -85,6 +85,8 @@ export async function POST(req: NextRequest) {
               refs: response.refs,
               canonNotes: response.canonNotes,
               insufficientTraditions: response.insufficientTraditions,
+              doctrineLabel: response.doctrineLabel ?? null,
+              sayingNote: response.sayingNote ?? null,
             });
             // Consensus first (§11: the "agree" view leads).
             const order = ["consensus", "sources", "position", "divergence", "historical", "critique"];

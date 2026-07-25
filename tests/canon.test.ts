@@ -70,6 +70,38 @@ describe("deterministic validation (spec 9.1)", () => {
   });
 });
 
+describe("comma lists and chapter ranges", () => {
+  it("extracts comma-continued verses", () => {
+    const refs = extractReferences("See John 3:16,18 and Rom 8:1, 28.");
+    const norms = refs.map((r) => `${r.book.id}:${r.chapter}.${r.verse}`);
+    expect(norms).toEqual(["john:3.16", "john:3.18", "rom:8.1", "rom:8.28"]);
+  });
+
+  it("does not swallow chapter:verse after a comma", () => {
+    const refs = extractReferences("John 3:16, 4:2 is two refs, not three verses.");
+    // "4:2" has no book so it is not extracted; the comma scan must not eat "4".
+    expect(refs).toHaveLength(1);
+    expect(refs[0].verse).toBe(16);
+  });
+
+  it("parses and validates chapter ranges", () => {
+    const v = validateReference("John 3-4");
+    expect(v.ok).toBe(true);
+    if (v.ok) {
+      expect(v.ref.refNorm).toBe("john:3-4");
+      const verses = expandRefToVerses(v.ref);
+      expect(verses).toHaveLength(36 + 54); // John 3 + John 4
+      expect(verses[0]).toBe("john:3.1");
+      expect(verses[verses.length - 1]).toBe("john:4.54");
+    }
+  });
+
+  it("rejects impossible chapter ranges", () => {
+    const v = validateReference("Jude 1-3");
+    expect(v.ok).toBe(false);
+  });
+});
+
 describe("verse expansion", () => {
   it("expands ranges to individual verses", () => {
     const pre = preflightReferences("Romans 3:21-26");

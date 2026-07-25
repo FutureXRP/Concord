@@ -181,6 +181,26 @@ export class CorpusIndex {
   getWork(id: string): Work | null {
     return this.works.get(id) ?? null;
   }
+
+  /**
+   * Reverse index: every non-scripture chunk that cites any of these
+   * verses. Powers the "Cited by" rows in the source panel and the instant
+   * passage view.
+   */
+  citedBy(refNorms: string[]): RetrievedChunk[] {
+    const out: RetrievedChunk[] = [];
+    const seen = new Set<string>();
+    for (const ref of refNorms) {
+      for (const csid of this.refIndex.get(ref) ?? []) {
+        if (seen.has(csid)) continue;
+        seen.add(csid);
+        const chunk = this.chunks.get(csid)!;
+        if (chunk.authority_class === "scripture") continue;
+        out.push({ ...chunk, score: 1 });
+      }
+    }
+    return out;
+  }
 }
 
 /**

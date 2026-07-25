@@ -57,7 +57,13 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
   const [view, setView] = useState<"agree" | "differ">("agree");
   const [phase, setPhase] = useState<Phase>("idle");
   const [sections, setSections] = useState<VerifiedSection[]>([]);
-  const [mode, setMode] = useState<"synthesized" | "sources" | null>(null);
+  const [mode, setMode] = useState<"synthesized" | "sources" | "curated" | null>(null);
+  const [doctrineLabel, setDoctrineLabel] = useState<string | null>(null);
+  const [sayingNote, setSayingNote] = useState<{
+    saying: string;
+    verdict: string;
+    origin: string;
+  } | null>(null);
   const [insufficientTraditions, setInsufficientTraditions] = useState<string[]>([]);
   const [notice, setNotice] = useState<string | null>(null);
   const [canonNotes, setCanonNotes] = useState<string[]>([]);
@@ -73,6 +79,8 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
       setPhase("loading");
       setSections([]);
       setMode(null);
+      setDoctrineLabel(null);
+      setSayingNote(null);
       setNotice(null);
       setCanonNotes([]);
       setInsufficientTraditions([]);
@@ -90,11 +98,16 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
               setCanonNotes(res.canonNotes);
               setNotice(res.reason);
               break;
-            case "answered":
-              setMode("sources");
+            case "answered": {
+              setMode(res.mode);
+              setDoctrineLabel(res.doctrineLabel ?? null);
+              setSayingNote(res.sayingNote ?? null);
               setCanonNotes(res.canonNotes);
-              setSections(res.result.rendered as VerifiedSection[]);
+              const rendered = res.result.rendered as VerifiedSection[];
+              setSections(rendered);
+              if (!rendered.some((s) => s.type === "consensus")) setView("differ");
               break;
+            }
           }
           setPhase("done");
         } catch {
@@ -139,12 +152,17 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
             switch (event) {
               case "meta":
                 setMode(data.mode ?? null);
+                setDoctrineLabel(data.doctrineLabel ?? null);
+                setSayingNote(data.sayingNote ?? null);
                 setCanonNotes(data.canonNotes ?? []);
                 setInsufficientTraditions(data.insufficientTraditions ?? []);
                 setPhase("streaming");
                 break;
               case "section":
-                setSections((prev) => [...prev, data as VerifiedSection]);
+                setSections((prev) => {
+                  const next = [...prev, data as VerifiedSection];
+                  return next;
+                });
                 break;
               case "insufficient":
                 setNotice(data.reason);
@@ -164,11 +182,25 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
                 setNotice("Something went wrong. The study is unaffected.");
                 break;
               case "done":
+                setSections((prev) => {
+                  if (prev.length > 0 && !prev.some((s) => s.type === "consensus")) {
+                    setView("differ");
+                  }
+                  return prev;
+                });
                 break;
             }
           }
         }
         setPhase("done");
+        // Curated doctrine answers without a consensus section land on
+        // "Where they differ" so the loci are immediately visible.
+        setSections((prev) => {
+          if (prev.length > 0 && !prev.some((s) => s.type === "consensus")) {
+            setView("differ");
+          }
+          return prev;
+        });
       } catch (e) {
         if ((e as Error).name !== "AbortError") setPhase("error");
       }
@@ -226,6 +258,28 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
           >
             Where they differ
           </button>
+        </div>
+      ) : null}
+
+      {sayingNote ? (
+        <div className="insufficiency">
+          <strong>
+            &ldquo;{sayingNote.saying}&rdquo;{" "}
+            {sayingNote.verdict === "not-in-scripture"
+              ? "does not appear in any book of scripture."
+              : sayingNote.verdict === "misattributed"
+                ? "is commonly misattributed."
+                : "is a paraphrase, not a quotation."}
+          </strong>
+          <p style={{ margin: "0.4rem 0 0" }}>{sayingNote.origin}</p>
+        </div>
+      ) : null}
+
+      {doctrineLabel ? (
+        <div className="insufficiency">
+          <strong>{doctrineLabel}.</strong> A curated comparison: what each tradition
+          states in its own confessional standard, side by side, with shared creedal
+          ground first where it exists.
         </div>
       ) : null}
 
@@ -303,7 +357,11 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
       ) : null}
 
       {openSource ? (
-        <SourcePanel source={openSource} onClose={() => setOpenSource(null)} />
+        <SourcePanel
+          source={openSource}
+          onClose={() => setOpenSource(null)}
+          onResolved={setOpenSource}
+        />
       ) : null}
     </div>
   );

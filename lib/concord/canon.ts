@@ -50,8 +50,19 @@ export function lookupBook(nameOrAlias: string): BookEntry | null {
 }
 
 /**
+ * Comma-continued verse lists: "John 3:16,18" / "John 3:16, 18". The
+ * lookahead only refuses a chapter:verse continuation ("John 3:16, 4:2"),
+ * not a sentence period after the verse number.
+ */
+const COMMA_VERSE_RE = /^\s*,\s*(\d{1,3})(?!\s*[:.]\s*\d)/;
+
+/**
  * Extract every scripture-reference-shaped span from free text.
  * Extraction is permissive; validation (below) is strict.
+ *
+ * Shapes: "John 3:16" · "Rom. 3:21-26" · "1 Cor 15:3" · "John 3:16,18"
+ * (comma verse lists) · "John 3-4" (chapter ranges, endChapter set with
+ * verse null) · semicolon lists fall out of global matching.
  */
 export function extractReferences(text: string): Array<{
   match: string;
@@ -65,14 +76,36 @@ export function extractReferences(text: string): Array<{
   for (const m of text.matchAll(REF_RE)) {
     const book = lookupBook(m[1]);
     if (!book) continue;
-    out.push({
-      match: m[0].trim(),
-      book,
-      chapter: parseInt(m[2], 10),
-      verse: m[3] ? parseInt(m[3], 10) : null,
-      endChapter: m[4] ? parseInt(m[4], 10) : null,
-      endVerse: m[5] ? parseInt(m[5], 10) : null,
-    });
+    const chapter = parseInt(m[2], 10);
+    const verse = m[3] ? parseInt(m[3], 10) : null;
+    let endChapter = m[4] ? parseInt(m[4], 10) : null;
+    let endVerse = m[5] ? parseInt(m[5], 10) : null;
+
+    if (verse === null && endVerse !== null && endChapter === null) {
+      // "John 3-4": a chapter range, not a verse range.
+      endChapter = endVerse;
+      endVerse = null;
+    }
+
+    out.push({ match: m[0].trim(), book, chapter, verse, endChapter, endVerse });
+
+    // Comma-continued single verses share the book and chapter.
+    if (verse !== null) {
+      let rest = text.slice((m.index ?? 0) + m[0].length);
+      let cm;
+      while ((cm = rest.match(COMMA_VERSE_RE)) !== null) {
+        const v = parseInt(cm[1], 10);
+        out.push({
+          match: `${book.name} ${chapter}:${v}`,
+          book,
+          chapter,
+          verse: v,
+          endChapter: null,
+          endVerse: null,
+        });
+        rest = rest.slice(cm[0].length);
+      }
+    }
   }
   return out;
 }
@@ -131,6 +164,16 @@ export function validateReference(input: string): RefValidation {
       reason: `${book.name} has ${chapters.length} chapters; chapter ${r.chapter} does not exist.`,
     };
   }
+  // Chapter range ("John 3-4"): both endpoints must exist.
+  if (r.verse === null && r.endChapter !== null) {
+    if (r.endChapter < r.chapter || r.endChapter > chapters.length) {
+      return {
+        ok: false,
+        input,
+        reason: `${book.name} has ${chapters.length} chapters; range end ${r.endChapter} is invalid.`,
+      };
+    }
+  }
   if (r.verse !== null && !verseExists(book.id, r.chapter, r.verse)) {
     return {
       ok: false,
@@ -184,6 +227,8 @@ export function buildRefNorm(
   if (verse !== null) s += `.${verse}`;
   if (endVerse !== null) {
     s += `-${endChapter ?? chapter}.${endVerse}`;
+  } else if (verse === null && endChapter !== null) {
+    s += `-${endChapter}`; // chapter range
   }
   return s;
 }
@@ -191,11 +236,16 @@ export function buildRefNorm(
 /** Expand a validated ref into every single-verse refNorm it covers. */
 export function expandRefToVerses(ref: ScriptureRef): string[] {
   const chapters = COUNTS[ref.bookId];
-  if (!chapters || ref.verse === null) {
-    // whole chapter
-    if (!chapters) return [ref.refNorm];
-    const n = chapters[ref.chapter - 1] ?? 0;
-    return Array.from({ length: n }, (_, i) => `${ref.bookId}:${ref.chapter}.${i + 1}`);
+  if (!chapters) return [ref.refNorm];
+  if (ref.verse === null) {
+    // Whole chapter, or a chapter range.
+    const lastChapter = ref.endChapter ?? ref.chapter;
+    const out: string[] = [];
+    for (let ch = ref.chapter; ch <= Math.min(lastChapter, chapters.length); ch++) {
+      const n = chapters[ch - 1] ?? 0;
+      for (let v = 1; v <= n; v++) out.push(`${ref.bookId}:${ch}.${v}`);
+    }
+    return out;
   }
   const endCh = ref.endVerse !== null ? (ref.endChapter ?? ref.chapter) : ref.chapter;
   const endV = ref.endVerse ?? ref.verse;

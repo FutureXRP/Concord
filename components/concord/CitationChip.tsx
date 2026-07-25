@@ -19,6 +19,19 @@ export function chipLabel(csid: string): string {
     "confession:augsburg": "Augsburg",
     "confession:trent": "Trent",
     "magisterium:ccc": "CCC",
+    "confession:baltimore-2": "Baltimore",
+    "confession:luther-small-catechism": "Small Cat.",
+    "confession:thirty-nine-articles": "39 Art.",
+    "confession:heidelberg": "Heidelberg",
+    "confession:belgic": "Belgic",
+    "confession:dort": "Dort",
+    "confession:london-baptist-1689": "1689",
+    "confession:apostles-creed": "Apostles'",
+    "confession:athanasian-creed": "Athanasian",
+    "council:constantinople-i:creed": "Nicene",
+    "council:chalcedon:definition": "Chalcedon",
+    "council:orange-ii:canon": "Orange",
+    "father:augustine:confessions": "Augustine Conf.",
   };
   for (const [prefix, label] of Object.entries(ABBREV)) {
     if (csid.startsWith(prefix + ":")) {
@@ -42,6 +55,8 @@ export interface ResolvedSource {
   reason?: string;
   attribution?: string | null;
   degradationNotice?: string | null;
+  restsOn?: string[];
+  citedBy?: Array<{ csid: string; label: string }>;
   work?: {
     id: string;
     title: string;

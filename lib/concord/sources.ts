@@ -33,7 +33,7 @@ function excerptOf(chunk: RetrievedChunk): string {
   return quoteIsVerbatim(slice, chunk.body_norm) ? slice : chunk.body;
 }
 
-function scriptureLabel(chunk: RetrievedChunk): string {
+export function scriptureLabel(chunk: RetrievedChunk): string {
   // scripture:{translation}:{book}:{ch}.{v}
   const parts = chunk.csid.split(":");
   const book = lookupBook(parts[2]);
@@ -41,17 +41,22 @@ function scriptureLabel(chunk: RetrievedChunk): string {
   return `${book?.name ?? parts[2]} ${ch}:${v} (${parts[1].toUpperCase()})`;
 }
 
+/** A deterministic, fully cited claim wrapping one source chunk. */
+export function buildSourceClaim(chunk: RetrievedChunk, label: string): VerifiedClaim {
+  return {
+    text: `${label}.`,
+    csids: [chunk.csid],
+    quotation: { csid: chunk.csid, text: excerptOf(chunk) },
+    entailment: "pass",
+  };
+}
+
 /**
  * Deterministic answer: one "sources" section for scripture, one per
  * tradition for everything else.
  */
 export function buildSourcesResult(chunks: RetrievedChunk[]): FirewallResult {
-  const toClaim = (chunk: RetrievedChunk, label: string): VerifiedClaim => ({
-    text: `${label}.`,
-    csids: [chunk.csid],
-    quotation: { csid: chunk.csid, text: excerptOf(chunk) },
-    entailment: "pass",
-  });
+  const toClaim = buildSourceClaim;
 
   const sections: VerifiedSection[] = [];
 

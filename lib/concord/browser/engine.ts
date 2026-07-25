@@ -14,6 +14,13 @@ import { CorpusIndex, fuseAndCap, type CorpusInput } from "../engine-core";
 import { preflightReferences, expandRefToVerses } from "../canon";
 import { expandQuery } from "../synonyms";
 import { buildSourcesResult } from "../sources";
+import {
+  buildDoctrineResult,
+  buildSayingResult,
+  matchDoctrine,
+  matchSaying,
+  type SayingNote,
+} from "../curated";
 import type { FirewallResult, ScriptureRef } from "../types";
 
 const SPARSE_K = 60;
@@ -56,11 +63,13 @@ export function loadBrowserIndex(): Promise<CorpusIndex> {
 export type ClientQueryResult =
   | {
       status: "answered";
-      mode: "sources";
+      mode: "sources" | "curated";
       result: FirewallResult;
       refs: ScriptureRef[];
       canonNotes: string[];
       insufficientTraditions: string[];
+      doctrineLabel?: string;
+      sayingNote?: SayingNote;
     }
   | { status: "insufficient"; reason: string; canonNotes: string[] }
   | { status: "invalid-reference"; problems: Array<{ input: string; reason: string }> };
@@ -72,6 +81,38 @@ export async function clientQuery(query: string): Promise<ClientQueryResult> {
   }
 
   const idx = await loadBrowserIndex();
+  const resolveChunk = (csid: string) => idx.getChunk(csid);
+
+  const saying = matchSaying(query);
+  if (saying) {
+    const { note, result } = buildSayingResult(saying, resolveChunk);
+    return {
+      status: "answered",
+      mode: "curated",
+      sayingNote: note,
+      result,
+      refs: pre.valid,
+      canonNotes: pre.canonNotes,
+      insufficientTraditions: [],
+    };
+  }
+
+  const doctrine = matchDoctrine(query);
+  if (doctrine) {
+    const result = buildDoctrineResult(doctrine, resolveChunk);
+    if (result) {
+      return {
+        status: "answered",
+        mode: "curated",
+        doctrineLabel: doctrine.label,
+        result,
+        refs: pre.valid,
+        canonNotes: pre.canonNotes,
+        insufficientTraditions: [],
+      };
+    }
+  }
+
   const { query: q, expansions } = expandQuery(query);
   const expandedQuery = [q, ...expansions].join(" ");
 
@@ -106,6 +147,10 @@ export interface ClientResolved {
   body?: string;
   locator?: string;
   reason?: string;
+  /** Scripture this source cites, as resolvable scripture CSIDs. */
+  restsOn?: string[];
+  /** For a verse: confession/creed chunks that cite it. */
+  citedBy?: Array<{ csid: string; label: string }>;
   work?: {
     id: string;
     title: string;
@@ -120,17 +165,36 @@ export interface ClientResolved {
   };
 }
 
+const CITED_BY_MAX = 12;
+
 export async function clientResolve(csid: string): Promise<ClientResolved> {
   const idx = await loadBrowserIndex();
   const chunk = idx.getChunk(csid);
   if (!chunk) return { kind: "unresolved", csid, reason: "not in the local corpus" };
   const work = idx.getWork(chunk.work_id);
   if (!work) return { kind: "unresolved", csid, reason: "work record missing" };
+
+  const isScripture = chunk.authority_class === "scripture";
+  const restsOn = isScripture
+    ? undefined
+    : chunk.scripture_refs
+        .map((ref) => `scripture:kjv:${ref.split("-")[0]}`)
+        .filter((c) => idx.getChunk(c) !== null)
+        .slice(0, CITED_BY_MAX);
+  const citedBy = isScripture
+    ? idx
+        .citedBy(chunk.scripture_refs)
+        .slice(0, CITED_BY_MAX)
+        .map((c) => ({ csid: c.csid, label: `${c.work_title}, ${c.locator}` }))
+    : undefined;
+
   return {
     kind: "chunk",
     csid,
     body: chunk.body,
     locator: chunk.locator,
+    restsOn,
+    citedBy,
     work: {
       id: work.id,
       title: work.title,

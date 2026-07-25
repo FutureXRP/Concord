@@ -7,8 +7,10 @@ import { localGetChunk } from "../lib/concord/localstore";
 
 describe("standalone sources mode (no model configured)", () => {
   it("answers a passage query with verbatim, cited excerpts", async () => {
+    // No doctrine alias in the query: this exercises the retrieval-backed
+    // sources path (doctrine aliases route to the curated map instead).
     const res = await runConcordQuery({
-      query: "What do the traditions teach about justification in Romans 3:21-26?",
+      query: "What do the traditions teach about Romans 3:21-26?",
       traditions: [],
     });
     expect(res.status).toBe("answered");
