@@ -7,6 +7,7 @@
 
 import type { ParsedCSID, ResolvedCSID } from "./types";
 import { getSupabase } from "../supabase/client";
+import { isLocalMode, localGetChunk, localGetWork } from "./localstore";
 
 /** Domains with their minimum segment counts (domain segment included). */
 const DOMAIN_ARITY: Record<string, number> = {
@@ -64,6 +65,17 @@ export async function resolveCSID(csid: string): Promise<ResolvedCSID> {
   if (!isValidCSID(csid)) {
     return { kind: "unresolved", csid, reason: "malformed CSID" };
   }
+
+  if (isLocalMode()) {
+    const chunk = localGetChunk(csid);
+    if (chunk) {
+      const work = localGetWork(chunk.work_id);
+      if (!work) return { kind: "unresolved", csid, reason: "chunk found but work record missing" };
+      return { kind: "chunk", chunk, work };
+    }
+    return { kind: "unresolved", csid, reason: "not in the local corpus" };
+  }
+
   const supabase = getSupabase();
 
   const { data: chunk, error } = await supabase

@@ -22,6 +22,7 @@ import { getSupabase } from "../supabase/client";
 import { getEmbedder } from "./embed";
 import { expandQuery } from "./synonyms";
 import { expandRefToVerses, preflightReferences } from "./canon";
+import { isLocalMode, localRefSearch, localSparseSearch } from "./localstore";
 import type { AuthorityClass, RetrievedChunk, ScriptureRef, Tradition } from "./types";
 
 const DENSE_K = 60;
@@ -76,16 +77,28 @@ export function setReranker(r: Reranker): void {
 type Row = RetrievedChunk & Record<string, unknown>;
 
 export async function retrieve(req: RetrievalRequest): Promise<RetrievalResult> {
-  const supabase = getSupabase();
   const { valid: refs } = preflightReferences(req.query);
   const { query, expansions } = expandQuery(req.query);
   const expandedQuery = [query, ...expansions].join(" ");
 
-  const [dense, sparse, exact] = await Promise.all([
-    denseSearch(expandedQuery).catch(() => [] as Row[]),
-    sparseSearch(supabase, expandedQuery).catch(() => [] as Row[]),
-    exactRefSearch(supabase, refs).catch(() => [] as Row[]),
-  ]);
+  let dense: Row[];
+  let sparse: Row[];
+  let exact: Row[];
+
+  if (isLocalMode()) {
+    // Dev/demo mode: BM25 + exact refs over the checked-in corpus. No dense
+    // leg (no embeddings locally); the pipeline above is unchanged.
+    dense = [];
+    sparse = localSparseSearch(expandedQuery, SPARSE_K) as Row[];
+    exact = localRefSearch(refs.flatMap(expandRefToVerses)) as Row[];
+  } else {
+    const supabase = getSupabase();
+    [dense, sparse, exact] = await Promise.all([
+      denseSearch(expandedQuery).catch(() => [] as Row[]),
+      sparseSearch(supabase, expandedQuery).catch(() => [] as Row[]),
+      exactRefSearch(supabase, refs).catch(() => [] as Row[]),
+    ]);
+  }
 
   // Reciprocal rank fusion across the three lists.
   const fused = new Map<string, { row: Row; score: number }>();

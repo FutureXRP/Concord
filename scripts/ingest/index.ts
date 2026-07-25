@@ -2,7 +2,8 @@
  * Ingest entrypoint (Phase 1 corpus, spec §15).
  *
  *   npm run ingest -- kjv          # KJV scripture, verse-level chunks
- *   npm run ingest -- westminster  # Westminster Shorter Catechism
+ *   npm run ingest -- confessions  # Westminster standards, Heidelberg,
+ *                                  # Belgic, Dort, 1689, ecumenical creeds
  *
  * Every ingester enforces the licensing invariant: only manifest entries
  * with tier A or B are ever stored (the DB trigger backstops this).
@@ -10,7 +11,7 @@
 
 import manifest from "../../data/corpus/manifest.json";
 import { ingestKJV } from "./scripture-kjv";
-import { ingestWestminsterShorter } from "./westminster";
+import { ingestConfessions } from "./confessions";
 
 export function manifestEntry(workId: string) {
   const entry = (manifest.entries as Array<{ work_id: string; tier: string }>).find(
@@ -25,7 +26,7 @@ export function manifestEntry(workId: string) {
 
 const targets: Record<string, () => Promise<void>> = {
   kjv: ingestKJV,
-  westminster: ingestWestminsterShorter,
+  confessions: ingestConfessions,
 };
 
 async function main() {

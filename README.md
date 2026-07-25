@@ -46,29 +46,49 @@ query
 
 ## Getting started
 
+### Local / demo mode (no database)
+
 ```bash
 npm install
-cp .env.example .env.local     # fill in Supabase + Anthropic + embeddings keys
-
-# Database (Supabase with pgvector):
-#   apply supabase/migrations/*.sql in order, then:
-npm run build:canon            # seed concord_canon (31,102 verse rows)
-npm run ingest -- kjv          # Phase 1 scripture corpus
-npm run ingest -- westminster  # Westminster Shorter Catechism
-
-npm run dev                    # http://localhost:3000
+export ANTHROPIC_API_KEY=sk-ant-...   # generation + Gate 3 entailment
+npm run dev                           # http://localhost:3000
 ```
 
-Without env configuration the app still runs; queries return the
-insufficiency state (which is itself a first-class, honest UI state — spec
-§11).
+When Supabase is not configured, Concord automatically serves retrieval and
+citation resolution from the **checked-in public-domain corpus**
+(`data/sources/`): the full KJV (31,102 verses), the Westminster Confession
+and both catechisms, the Heidelberg Catechism, Belgic Confession, Canons of
+Dort, the 1689 London Baptist Confession, and the ecumenical creeds
+(Apostles', Nicene 381, Athanasian, Chalcedonian Definition, Orange 529) —
+about 32,000 chunks. Sparse BM25 + exact scripture-ref retrieval run
+in-process; the firewall pipeline is identical in both modes.
+
+Without `ANTHROPIC_API_KEY`, the deterministic layers still work (reference
+validation, fabricated-verse rejection, retrieval, chip resolution) and
+generation-dependent queries report an error.
+
+### Production mode (Supabase + pgvector)
+
+```bash
+cp .env.example .env.local     # fill in Supabase + Anthropic + embeddings keys
+
+# apply supabase/migrations/*.sql in order, then:
+npm run build:canon            # seed concord_canon (31,102 verse rows)
+npm run ingest -- kjv          # scripture corpus with embeddings
+npm run ingest -- confessions  # confessional corpus with embeddings
+
+npm run dev
+```
 
 ## Verification
 
 ```bash
 npm run typecheck
-npm test                       # canon validator, CSID grammar, Gate 1–5 firewall tests
-npm run eval -- adversarial    # zero-fabrication gate (needs full env)
+npm test                       # canon validator, CSID grammar, Gate 1–5 firewall,
+                               # local corpus + retrieval tests
+npm run eval -- adversarial    # zero-fabrication gate; deterministic cases run
+                               # with no keys at all, model cases need
+                               # ANTHROPIC_API_KEY
 ```
 
 ## Licensing invariants

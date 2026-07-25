@@ -104,15 +104,19 @@ async function main() {
       outcomes.push(o);
       console.log(`${o.id}  ${o.status.padEnd(18)} ${o.detail.slice(0, 100)}`);
     } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      // Cases that reach generation need ANTHROPIC_API_KEY; deterministic
+      // negatives (the fabrication catches) run without it.
+      const skipped = /api ?key|anthropic/i.test(msg);
       outcomes.push({
         id: c.id,
         category: c.category,
-        status: "error",
+        status: skipped ? "skipped-no-model" : "error",
         citationIntegrity: null,
         fabricated: false,
-        detail: e instanceof Error ? e.message : String(e),
+        detail: msg,
       });
-      console.log(`${c.id}  ERROR ${e}`);
+      console.log(`${c.id}  ${skipped ? "SKIPPED (no model key)" : `ERROR ${msg}`}`);
     }
   }
 
@@ -128,6 +132,7 @@ async function main() {
     answered: answered.length,
     declined: outcomes.filter((o) => o.status === "declined").length,
     correctNegative: outcomes.filter((o) => o.status === "correct-negative").length,
+    skipped: outcomes.filter((o) => o.status === "skipped-no-model").length,
     errors: outcomes.filter((o) => o.status === "error").length,
     citationIntegrityBelowOne: belowIntegrity.length,
   };

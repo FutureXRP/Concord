@@ -15,6 +15,7 @@
  */
 
 import { getSupabase } from "../supabase/client";
+import { isLocalMode, localGetChunk } from "../concord/localstore";
 
 export const PROXY_CACHE_TTL_MS = 60_000; // request-scoped; asserted in tests
 
@@ -107,8 +108,20 @@ async function publicDomainFallback(
   _requestedTranslation: string,
   notice: string,
 ): Promise<ProxiedVerse> {
+  if (isLocalMode()) {
+    const chunk = localGetChunk(`scripture:kjv:${refNorm}`);
+    return {
+      refNorm,
+      translation: "kjv",
+      text: chunk?.body ?? "",
+      attribution: "King James Version (KJV). Public domain.",
+      degraded: true,
+      degradationNotice: notice,
+    };
+  }
+
   const supabase = getSupabase();
-  const csid = `scripture:web:${refNorm.replace(":", ":")}`;
+  const csid = `scripture:web:${refNorm}`;
   const { data } = await supabase
     .from("concord_chunks")
     .select("body")
