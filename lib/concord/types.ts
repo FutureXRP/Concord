@@ -126,7 +126,18 @@ export type ResolvedCSID =
 
 // ---------- Generation contract (spec §9.3) ----------
 
-export type SectionType = "consensus" | "position" | "divergence" | "critique" | "historical";
+/**
+ * "sources" is emitted only by the deterministic standalone mode (no model
+ * configured): verbatim excerpts grouped by tradition. The generation
+ * contract never produces it.
+ */
+export type SectionType =
+  | "consensus"
+  | "position"
+  | "divergence"
+  | "critique"
+  | "historical"
+  | "sources";
 
 export interface Quotation {
   csid: string;

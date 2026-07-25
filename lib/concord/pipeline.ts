@@ -11,13 +11,22 @@
  */
 
 import { randomUUID } from "node:crypto";
-import { preflightReferences } from "./canon";
+import { lookupBook, preflightReferences } from "./canon";
 import { retrieve } from "./retrieve";
 import { generateSections } from "./generate";
 import { runFirewall } from "./firewall";
 import { getEntailmentChecker } from "./entailment";
+import { getLLMProvider } from "./llm";
+import { quoteIsVerbatim } from "./normalize";
 import { getSupabase } from "../supabase/client";
-import type { FirewallResult, ScriptureRef, Tradition } from "./types";
+import type {
+  FirewallResult,
+  RetrievedChunk,
+  ScriptureRef,
+  Tradition,
+  VerifiedClaim,
+  VerifiedSection,
+} from "./types";
 
 const MAX_HARD_FAILS = 2;
 
@@ -30,6 +39,12 @@ export interface ConcordQuery {
 export type ConcordResponse =
   | {
       status: "answered";
+      /**
+       * "synthesized": a model composed the claims (firewall-verified).
+       * "sources": standalone mode - no model; deterministic verbatim
+       * excerpts from the retrieved sources.
+       */
+      mode: "synthesized" | "sources";
       result: FirewallResult;
       refs: ScriptureRef[];
       canonNotes: string[];
@@ -77,6 +92,20 @@ export async function runConcordQuery(q: ConcordQuery): Promise<ConcordResponse>
       status: "insufficient",
       reason:
         "Concord has no sourced material above threshold for this question. It does not answer from memory.",
+      refs: retrieval.refs,
+      canonNotes: pre.canonNotes,
+      insufficientTraditions: retrieval.insufficientTraditions,
+    };
+  }
+
+  // Standalone sources mode: no model configured. Render the retrieved
+  // sources themselves - deterministic text, verbatim excerpts, every entry
+  // cited. Nothing is synthesized, so nothing can be fabricated.
+  if (!getLLMProvider()) {
+    return {
+      status: "answered",
+      mode: "sources",
+      result: buildSourcesResult(retrieval.chunks),
       refs: retrieval.refs,
       canonNotes: pre.canonNotes,
       insufficientTraditions: retrieval.insufficientTraditions,
@@ -136,6 +165,7 @@ export async function runConcordQuery(q: ConcordQuery): Promise<ConcordResponse>
 
     return {
       status: "answered",
+      mode: "synthesized",
       result,
       refs: retrieval.refs,
       canonNotes: pre.canonNotes,
@@ -147,6 +177,79 @@ export async function runConcordQuery(q: ConcordQuery): Promise<ConcordResponse>
       ],
     };
   }
+}
+
+// ---------- Standalone sources mode ----------
+
+const EXCERPT_MAX = 550;
+
+/** A leading slice of the chunk body that survives Gate 2 verification. */
+function excerptOf(chunk: RetrievedChunk): string {
+  let slice = chunk.body;
+  if (slice.length > EXCERPT_MAX) {
+    const cut = slice.slice(0, EXCERPT_MAX);
+    const boundary = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("; "), cut.lastIndexOf(" "));
+    slice = cut.slice(0, boundary > 100 ? boundary + 1 : EXCERPT_MAX).trimEnd();
+  }
+  // The excerpt is displayed as a quotation, so it must pass the same
+  // byte-verification a model quotation would.
+  return quoteIsVerbatim(slice, chunk.body_norm) ? slice : chunk.body;
+}
+
+function scriptureLabel(chunk: RetrievedChunk): string {
+  // scripture:{translation}:{book}:{ch}.{v}
+  const parts = chunk.csid.split(":");
+  const book = lookupBook(parts[2]);
+  const [ch, v] = chunk.locator.split(".");
+  return `${book?.name ?? parts[2]} ${ch}:${v} (${parts[1].toUpperCase()})`;
+}
+
+/**
+ * Deterministic answer: one "sources" section for scripture, one per
+ * tradition for everything else. Claim text is a fixed template naming the
+ * work and locator; the substance is the verbatim, Gate-2-verified excerpt.
+ */
+function buildSourcesResult(chunks: RetrievedChunk[]): FirewallResult {
+  const toClaim = (chunk: RetrievedChunk, label: string): VerifiedClaim => ({
+    text: `${label}.`,
+    csids: [chunk.csid],
+    quotation: { csid: chunk.csid, text: excerptOf(chunk) },
+    entailment: "pass",
+  });
+
+  const sections: VerifiedSection[] = [];
+
+  const scripture = chunks.filter((c) => c.authority_class === "scripture");
+  if (scripture.length > 0) {
+    sections.push({
+      type: "sources",
+      tradition: null,
+      claims: scripture.map((c) => toClaim(c, scriptureLabel(c))),
+    });
+  }
+
+  const byTradition = new Map<Tradition, RetrievedChunk[]>();
+  for (const c of chunks) {
+    if (c.authority_class === "scripture") continue;
+    const list = byTradition.get(c.tradition);
+    if (list) list.push(c);
+    else byTradition.set(c.tradition, [c]);
+  }
+  for (const [tradition, list] of byTradition) {
+    sections.push({
+      type: "sources",
+      tradition,
+      claims: list.map((c) => toClaim(c, `${c.work_title}, ${c.locator}`)),
+    });
+  }
+
+  return {
+    rendered: sections,
+    stripped: [],
+    regenerations: 0,
+    // Nothing synthesized, nothing strippable: integrity is 1 by construction.
+    citationIntegrity: 1,
+  };
 }
 
 /** concord_citation_log is the evidence that the 100% claim is true (§6). */
