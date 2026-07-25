@@ -60,6 +60,10 @@ export function localGetWork(id: string): Work | null {
   return loadIndex().getWork(id);
 }
 
+export function localCitedBy(refNorms: string[]): RetrievedChunk[] {
+  return loadIndex().citedBy(refNorms);
+}
+
 /** Test seam / memory release. */
 export function _resetLocalIndex(): void {
   index = null;

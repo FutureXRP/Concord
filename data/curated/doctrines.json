@@ -1,0 +1,144 @@
+{
+  "comment": "Parallel-doctrine map: for each doctrine, where each tradition states its position in its own primary literature (N6). Every CSID here is validated against the corpus by tests/curated.test.ts. 'consensus' lists ecumenical-creed loci rendered under Shared ground.",
+  "doctrines": [
+    {
+      "id": "justification",
+      "label": "Justification",
+      "aliases": ["justification", "justified", "justification by faith", "imputed righteousness", "declared righteous", "righteous before god", "sola fide", "faith alone"],
+      "consensus": [],
+      "loci": [
+        { "tradition": "reformed", "csids": ["confession:westminster:ch11.1", "confession:westminster-shorter:q33", "confession:heidelberg:q60"] },
+        { "tradition": "lutheran", "csids": ["confession:augsburg:art4"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art11"] },
+        { "tradition": "baptist", "csids": ["confession:london-baptist-1689:ch11.1"] },
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q103", "confession:baltimore-2:q105"] }
+      ]
+    },
+    {
+      "id": "baptism",
+      "label": "Baptism",
+      "aliases": ["baptism", "baptize", "baptized", "paedobaptism", "credobaptism", "infant baptism", "believer's baptism"],
+      "consensus": ["council:constantinople-i:creed:5"],
+      "loci": [
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q152"] },
+        { "tradition": "lutheran", "csids": ["confession:luther-small-catechism:s27", "confession:augsburg:art9"] },
+        { "tradition": "reformed", "csids": ["confession:westminster:ch28.1", "confession:heidelberg:q69"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art27"] },
+        { "tradition": "baptist", "csids": ["confession:london-baptist-1689:ch29.1"] }
+      ]
+    },
+    {
+      "id": "lords-supper",
+      "label": "The Lord's Supper",
+      "aliases": ["lord's supper", "lords supper", "eucharist", "communion", "sacrament of the altar", "real presence", "transubstantiation", "breaking of bread"],
+      "consensus": [],
+      "loci": [
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q238"] },
+        { "tradition": "lutheran", "csids": ["confession:luther-small-catechism:s30", "confession:augsburg:art10"] },
+        { "tradition": "reformed", "csids": ["confession:westminster:ch29.1", "confession:westminster-shorter:q96"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art28"] },
+        { "tradition": "baptist", "csids": ["confession:london-baptist-1689:ch30.1"] }
+      ]
+    },
+    {
+      "id": "trinity",
+      "label": "The Trinity",
+      "aliases": ["trinity", "triune", "godhead", "three persons", "consubstantial", "homoousios"],
+      "consensus": ["council:constantinople-i:creed:1", "confession:athanasian-creed:1"],
+      "loci": [
+        { "tradition": "reformed", "csids": ["confession:westminster:ch2.3", "confession:westminster-shorter:q4"] },
+        { "tradition": "lutheran", "csids": ["confession:augsburg:art1"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art1"] },
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q24", "confession:baltimore-2:q25"] }
+      ]
+    },
+    {
+      "id": "person-of-christ",
+      "label": "The Person of Christ",
+      "aliases": ["person of christ", "two natures", "hypostatic union", "incarnation", "true god and true man", "divinity of christ", "deity of christ"],
+      "consensus": ["council:chalcedon:definition:1", "council:constantinople-i:creed:2"],
+      "loci": [
+        { "tradition": "lutheran", "csids": ["confession:augsburg:art3"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art2"] },
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q62"] },
+        { "tradition": "reformed", "csids": ["confession:westminster:ch8.2"] }
+      ]
+    },
+    {
+      "id": "scripture",
+      "label": "Holy Scripture",
+      "aliases": ["scripture", "authority of the bible", "sola scriptura", "word of god", "canon of scripture", "inspiration of scripture"],
+      "consensus": [],
+      "loci": [
+        { "tradition": "reformed", "csids": ["confession:westminster:ch1.1", "confession:belgic:3", "confession:belgic:7"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art6"] }
+      ]
+    },
+    {
+      "id": "original-sin",
+      "label": "Original Sin",
+      "aliases": ["original sin", "the fall", "fall of man", "birth sin", "total depravity", "inherited sin"],
+      "consensus": [],
+      "loci": [
+        { "tradition": "lutheran", "csids": ["confession:augsburg:art2"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art9"] },
+        { "tradition": "reformed", "csids": ["confession:westminster:ch6.2", "confession:belgic:15"] },
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q47", "confession:baltimore-2:q49"] }
+      ]
+    },
+    {
+      "id": "free-will",
+      "label": "Free Will",
+      "aliases": ["free will", "freewill", "moral ability", "bondage of the will", "monergism", "synergism"],
+      "consensus": [],
+      "loci": [
+        { "tradition": "reformed", "csids": ["confession:westminster:ch9.1", "confession:westminster:ch9.3"] },
+        { "tradition": "lutheran", "csids": ["confession:augsburg:art18"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art10"] }
+      ]
+    },
+    {
+      "id": "predestination",
+      "label": "Predestination and Election",
+      "aliases": ["predestination", "election", "elect", "foreordination", "unconditional election", "divine decree"],
+      "consensus": [],
+      "loci": [
+        { "tradition": "reformed", "csids": ["confession:westminster:ch3.3", "confession:dort:ch1.7"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art17"] }
+      ]
+    },
+    {
+      "id": "church",
+      "label": "The Church",
+      "aliases": ["the church", "ecclesiology", "visible church", "invisible church", "marks of the church", "catholic church"],
+      "consensus": ["council:constantinople-i:creed:5"],
+      "loci": [
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q115"] },
+        { "tradition": "lutheran", "csids": ["confession:augsburg:art7"] },
+        { "tradition": "reformed", "csids": ["confession:westminster:ch25.1", "confession:westminster:ch25.2"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art19"] }
+      ]
+    },
+    {
+      "id": "good-works",
+      "label": "Good Works",
+      "aliases": ["good works", "works and salvation", "merit", "obedience and faith", "faith and works"],
+      "consensus": [],
+      "loci": [
+        { "tradition": "lutheran", "csids": ["confession:augsburg:art20"] },
+        { "tradition": "anglican", "csids": ["confession:thirty-nine-articles:art12"] },
+        { "tradition": "reformed", "csids": ["confession:heidelberg:q62", "confession:heidelberg:q63"] },
+        { "tradition": "catholic-roman", "csids": ["confession:baltimore-2:q110"] }
+      ]
+    },
+    {
+      "id": "last-things",
+      "label": "Resurrection and Last Things",
+      "aliases": ["last things", "eschatology", "last judgment", "final judgment", "resurrection of the dead", "second coming", "life everlasting"],
+      "consensus": ["council:constantinople-i:creed:3", "confession:apostles-creed:3"],
+      "loci": [
+        { "tradition": "reformed", "csids": ["confession:westminster:ch33.1", "confession:westminster:ch33.2"] }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { resolveCSID } from "@/lib/concord/csid";
 import { corsHeaders, preflightResponse } from "@/lib/concord/cors";
+import { isLocalMode, localCitedBy, localGetChunk } from "@/lib/concord/localstore";
 import { fetchVerse } from "@/lib/youversion/proxy";
+
+const CITED_BY_MAX = 12;
 
 export const runtime = "nodejs";
 
@@ -37,10 +40,28 @@ export async function GET(req: NextRequest) {
         const refNorm = `${resolved.chunk.csid.split(":")[2]}:${resolved.chunk.locator}`;
         proxied = await fetchVerse(refNorm, translation);
       }
+      // "Rests on" / "Cited by" chip rows (local corpus mode).
+      let restsOn: string[] | undefined;
+      let citedBy: Array<{ csid: string; label: string }> | undefined;
+      if (isLocalMode()) {
+        const isScripture = resolved.work.authority_class === "scripture";
+        if (isScripture) {
+          citedBy = localCitedBy(resolved.chunk.scripture_refs)
+            .slice(0, CITED_BY_MAX)
+            .map((c) => ({ csid: c.csid, label: `${c.work_title}, ${c.locator}` }));
+        } else {
+          restsOn = resolved.chunk.scripture_refs
+            .map((ref: string) => `scripture:kjv:${ref.split("-")[0]}`)
+            .filter((c: string) => localGetChunk(c) !== null)
+            .slice(0, CITED_BY_MAX);
+        }
+      }
       return NextResponse.json(
         {
         kind: "chunk",
         csid,
+        restsOn,
+        citedBy,
         body: proxied?.text || resolved.chunk.body,
         locator: resolved.chunk.locator,
         work: {

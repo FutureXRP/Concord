@@ -1,0 +1,125 @@
+{
+  "comment": "Extra-biblical sayings and misattributions (spec §14.3). Each entry has a documented origin. 'verdict' is one of: not-in-scripture | misattributed | paraphrase. 'nearest' lists refNorms of the scripture most often conflated with the saying, rendered as verifiable chips.",
+  "sayings": [
+    {
+      "id": "god-helps",
+      "match": ["god helps those who help themselves"],
+      "saying": "God helps those who help themselves",
+      "verdict": "not-in-scripture",
+      "origin": "The wording appears in Algernon Sidney's Discourses Concerning Government (published 1698) and was popularized in America by Benjamin Franklin in Poor Richard's Almanack (1736). Similar sentiments occur in ancient Greek sources such as Aesop's fable of Hercules and the Waggoner.",
+      "nearest": ["rom:5.6", "eph:2.8"]
+    },
+    {
+      "id": "cleanliness",
+      "match": ["cleanliness is next to godliness"],
+      "saying": "Cleanliness is next to godliness",
+      "verdict": "not-in-scripture",
+      "origin": "Popularized by John Wesley, who used the phrase in his sermon On Dress (published 1786), where he presents it as a known proverb. It appears in no book of any biblical canon.",
+      "nearest": ["ps:24.3", "ps:24.4"]
+    },
+    {
+      "id": "more-than-handle",
+      "match": ["more than you can handle", "more than we can handle", "more than you can bear"],
+      "saying": "God will not give you more than you can handle",
+      "verdict": "paraphrase",
+      "origin": "A broadened paraphrase of 1 Corinthians 10:13, which concerns temptation and promises a way of escape. The verse does not say believers will be spared burdens beyond their strength.",
+      "nearest": ["1cor:10.13", "2cor:1.8"]
+    },
+    {
+      "id": "money-root",
+      "match": ["money is the root of all evil"],
+      "saying": "Money is the root of all evil",
+      "verdict": "paraphrase",
+      "origin": "A truncation of 1 Timothy 6:10, which says the LOVE of money is a root of all kinds of evil. The subject of the sentence is the love, not the money.",
+      "nearest": ["1tim:6.10"]
+    },
+    {
+      "id": "spare-rod",
+      "match": ["spare the rod", "spoil the child"],
+      "saying": "Spare the rod, spoil the child",
+      "verdict": "not-in-scripture",
+      "origin": "The exact wording is from Samuel Butler's satirical poem Hudibras (1663). Proverbs 13:24 expresses a related idea in different words.",
+      "nearest": ["prov:13.24", "prov:22.6"]
+    },
+    {
+      "id": "mysterious-ways",
+      "match": ["god moves in mysterious ways", "works in mysterious ways"],
+      "saying": "God moves in mysterious ways",
+      "verdict": "not-in-scripture",
+      "origin": "The opening line of William Cowper's hymn Light Shining out of Darkness (1774): 'God moves in a mysterious way, His wonders to perform.' The phrase does not occur in scripture.",
+      "nearest": ["isa:55.8", "isa:55.9", "rom:11.33"]
+    },
+    {
+      "id": "charity-home",
+      "match": ["charity begins at home"],
+      "saying": "Charity begins at home",
+      "verdict": "not-in-scripture",
+      "origin": "The phrasing is attested in Sir Thomas Browne's Religio Medici (1642) and earlier English usage. 1 Timothy 5:8 addresses providing for one's household in different words.",
+      "nearest": ["1tim:5.8"]
+    },
+    {
+      "id": "lion-lamb",
+      "match": ["lion shall lie down with the lamb", "lion will lie down with the lamb", "lion and the lamb"],
+      "saying": "The lion shall lie down with the lamb",
+      "verdict": "paraphrase",
+      "origin": "A conflation of Isaiah 11:6, where it is the WOLF that dwells with the lamb, and the leopard that lies down with the young goat; the lion appears alongside the calf.",
+      "nearest": ["isa:11.6", "isa:65.25"]
+    },
+    {
+      "id": "pride-fall",
+      "match": ["pride comes before a fall", "pride goes before a fall", "pride cometh before a fall", "pride comes before the fall"],
+      "saying": "Pride comes before a fall",
+      "verdict": "paraphrase",
+      "origin": "A compression of Proverbs 16:18: 'Pride goeth before destruction, and an haughty spirit before a fall.'",
+      "nearest": ["prov:16.18"]
+    },
+    {
+      "id": "own-self-true",
+      "match": ["to thine own self be true"],
+      "saying": "To thine own self be true",
+      "verdict": "not-in-scripture",
+      "origin": "Spoken by Polonius in Shakespeare's Hamlet, Act 1, Scene 3 (c. 1600). It appears in no biblical book.",
+      "nearest": []
+    },
+    {
+      "id": "essentials-unity",
+      "match": ["in essentials unity", "in essentials, unity"],
+      "saying": "In essentials unity, in non-essentials liberty, in all things charity",
+      "verdict": "misattributed",
+      "origin": "Often attributed to Augustine, but first attested in the Lutheran irenicist Rupertus Meldenius (Peter Meiderlin), Paraenesis votiva pro pace ecclesiae, around 1626. No Augustinian text contains it.",
+      "nearest": ["eph:4.3"]
+    },
+    {
+      "id": "preach-gospel-words",
+      "match": ["use words if necessary", "when necessary use words"],
+      "saying": "Preach the gospel at all times; when necessary, use words",
+      "verdict": "misattributed",
+      "origin": "Commonly attributed to Francis of Assisi, but it appears nowhere in his writings or in the early biographies. The earliest known formulations of this phrasing are from the 20th century.",
+      "nearest": ["rom:10.14"]
+    },
+    {
+      "id": "hate-sin",
+      "match": ["hate the sin", "love the sinner"],
+      "saying": "Hate the sin, love the sinner",
+      "verdict": "misattributed",
+      "origin": "Popularly credited to scripture or Augustine. Augustine's Letter 211 has 'cum dilectione hominum et odio vitiorum' (with love for the persons and hatred of the vices); the familiar English wording was popularized much later, including by Gandhi's autobiography (1929).",
+      "nearest": ["jude:1.22", "jude:1.23"]
+    },
+    {
+      "id": "this-too-shall-pass",
+      "match": ["this too shall pass"],
+      "saying": "This too shall pass",
+      "verdict": "not-in-scripture",
+      "origin": "A proverb of Persian origin, retold in English literature and famously used by Abraham Lincoln in an 1859 address. It is not in any biblical book.",
+      "nearest": ["2cor:4.17", "2cor:4.18"]
+    },
+    {
+      "id": "eye-for-eye-blind",
+      "match": ["eye for an eye makes the whole world blind", "eye for an eye leaves the whole world blind"],
+      "saying": "An eye for an eye makes the whole world blind",
+      "verdict": "not-in-scripture",
+      "origin": "Attributed to M. K. Gandhi (the attribution itself is uncertain; it was popularized by the Gandhi biography and 1982 film). Scripture contains the lex talionis (Exodus 21:24) and its reframing by Jesus (Matthew 5:38-39), but not this sentence.",
+      "nearest": ["exod:21.24", "matt:5.38", "matt:5.39"]
+    }
+  ]
+}

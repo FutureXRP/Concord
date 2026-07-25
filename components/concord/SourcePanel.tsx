@@ -5,14 +5,17 @@
  * license, and an external link where one exists (spec §11).
  */
 
-import type { ResolvedSource } from "./CitationChip";
+import { CitationChip, type ResolvedSource } from "./CitationChip";
 
 export function SourcePanel({
   source,
   onClose,
+  onResolved,
 }: {
   source: ResolvedSource;
   onClose: () => void;
+  /** Chip clicks inside the panel navigate to that source. */
+  onResolved?: (s: ResolvedSource) => void;
 }) {
   return (
     <>
@@ -54,6 +57,22 @@ export function SourcePanel({
               <p className="insufficiency">{source.degradationNotice}</p>
             ) : null}
             <div className="source-body">{source.body}</div>
+            {onResolved && source.restsOn && source.restsOn.length > 0 ? (
+              <div className="attribution">
+                Rests on:{" "}
+                {source.restsOn.map((csid) => (
+                  <CitationChip key={csid} csid={csid} onResolved={onResolved} />
+                ))}
+              </div>
+            ) : null}
+            {onResolved && source.citedBy && source.citedBy.length > 0 ? (
+              <div className="attribution">
+                Cited by:{" "}
+                {source.citedBy.map((c) => (
+                  <CitationChip key={c.csid} csid={c.csid} onResolved={onResolved} />
+                ))}
+              </div>
+            ) : null}
             {source.attribution ? (
               <div className="attribution">{source.attribution}</div>
             ) : null}

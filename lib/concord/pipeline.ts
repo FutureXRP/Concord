@@ -18,6 +18,14 @@ import { runFirewall } from "./firewall";
 import { getEntailmentChecker } from "./entailment";
 import { getLLMProvider } from "./llm";
 import { buildSourcesResult } from "./sources";
+import {
+  buildDoctrineResult,
+  buildSayingResult,
+  matchDoctrine,
+  matchSaying,
+  type SayingNote,
+} from "./curated";
+import { isLocalMode, localGetChunk } from "./localstore";
 import { getSupabase } from "../supabase/client";
 import type { FirewallResult, ScriptureRef, Tradition } from "./types";
 
@@ -36,12 +44,18 @@ export type ConcordResponse =
        * "synthesized": a model composed the claims (firewall-verified).
        * "sources": standalone mode - no model; deterministic verbatim
        * excerpts from the retrieved sources.
+       * "curated": deterministic answer from the curated doctrine map or
+       * sayings database - zero model calls in every mode.
        */
-      mode: "synthesized" | "sources";
+      mode: "synthesized" | "sources" | "curated";
       result: FirewallResult;
       refs: ScriptureRef[];
       canonNotes: string[];
       insufficientTraditions: Tradition[];
+      /** Set for parallel-doctrine answers (e.g. "Baptism"). */
+      doctrineLabel?: string;
+      /** Set for extra-biblical-saying answers (spec §14.3). */
+      sayingNote?: SayingNote;
     }
   | {
       /** N1: zero retrieval -> zero claim. Insufficiency is a first-class state. */
@@ -89,6 +103,39 @@ export async function runConcordQuery(q: ConcordQuery): Promise<ConcordResponse>
       canonNotes: pre.canonNotes,
       insufficientTraditions: retrieval.insufficientTraditions,
     };
+  }
+
+  // Curated deterministic answers run in EVERY mode - they are better than
+  // synthesis for these queries and cost nothing.
+  if (isLocalMode()) {
+    const saying = matchSaying(q.query);
+    if (saying) {
+      const { note, result } = buildSayingResult(saying, localGetChunk);
+      return {
+        status: "answered",
+        mode: "curated",
+        sayingNote: note,
+        result,
+        refs: pre.valid,
+        canonNotes: pre.canonNotes,
+        insufficientTraditions: [],
+      };
+    }
+    const doctrine = matchDoctrine(q.query);
+    if (doctrine) {
+      const result = buildDoctrineResult(doctrine, localGetChunk);
+      if (result) {
+        return {
+          status: "answered",
+          mode: "curated",
+          doctrineLabel: doctrine.label,
+          result,
+          refs: pre.valid,
+          canonNotes: pre.canonNotes,
+          insufficientTraditions: [],
+        };
+      }
+    }
   }
 
   // Standalone sources mode: no model configured. Render the retrieved
