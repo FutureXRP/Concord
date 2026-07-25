@@ -1,0 +1,57 @@
+{
+  "comment": "Self-preferred terminology for generated copy (spec §13). The model's own prose uses each tradition's preferred name. Quoted sources render verbatim.",
+  "preferred": {
+    "nrm-lds": {
+      "name": "the Church of Jesus Christ of Latter-day Saints",
+      "adjective": "Latter-day Saint",
+      "avoid": ["Mormon church", "Mormonism (as narrator voice)", "LDS church (informal contexts)"]
+    },
+    "nrm-jw": {
+      "name": "Jehovah's Witnesses",
+      "adjective": "Witness",
+      "avoid": ["Russellites", "Watchtower cult"]
+    },
+    "nrm-christian-science": {
+      "name": "the Church of Christ, Scientist",
+      "adjective": "Christian Science",
+      "avoid": []
+    },
+    "nrm-adventist": {
+      "name": "the Seventh-day Adventist Church",
+      "adjective": "Adventist",
+      "avoid": []
+    },
+    "catholic-roman": {
+      "name": "the Catholic Church",
+      "adjective": "Catholic",
+      "avoid": ["Romanist", "papist"]
+    },
+    "orthodox-eastern": {
+      "name": "the Eastern Orthodox Church",
+      "adjective": "Orthodox",
+      "avoid": []
+    },
+    "orthodox-oriental": {
+      "name": "the Oriental Orthodox Churches",
+      "adjective": "Oriental Orthodox",
+      "avoid": ["monophysite (as narrator voice; use miaphysite where sources permit)"]
+    },
+    "judaism-rabbinic": {
+      "name": "Rabbinic Judaism",
+      "adjective": "Jewish",
+      "avoid": []
+    },
+    "islam-sunni": {
+      "name": "Sunni Islam",
+      "adjective": "Sunni Muslim",
+      "avoid": ["Mohammedan"]
+    },
+    "islam-shia": {
+      "name": "Shia Islam",
+      "adjective": "Shia Muslim",
+      "avoid": ["Mohammedan"]
+    }
+  },
+  "banned_narrator_words": ["obviously", "clearly", "simply", "merely", "just", "heretical", "cult"],
+  "note_on_cult": "Most sociologists of religion prefer 'new religious movement' to 'cult' because the term collapses the theological and coercive-control axes (spec §7.4). Quotable from a cited source, never asserted by Concord."
+}

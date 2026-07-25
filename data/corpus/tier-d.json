@@ -1,0 +1,21 @@
+{
+  "comment": "Tier D: restricted / actively enforced (spec §3.3, §5.3). Concord describes these groups' teaching using Tier A/B secondary scholarly sources and NEVER ingests or quotes their primary literature. Additions to this list are a legal decision, not an engineering one. Review with counsel before changing.",
+  "entries": [
+    {
+      "tradition": "nrm-jw",
+      "name": "Jehovah's Witnesses (Watch Tower Bible and Tract Society publications)",
+      "reason": "Documented history of aggressive copyright enforcement against religious-studies use.",
+      "describe_via": "Tier A/B scholarly sources only",
+      "added": "2026-07-25",
+      "review": "legal"
+    },
+    {
+      "tradition": "nrm-christian-science",
+      "name": "Christian Science (Science and Health editions still under copyright)",
+      "reason": "Post-1929 editions under active copyright; early editions may be re-tiered after legal review.",
+      "describe_via": "Tier A/B scholarly sources; public-domain 1875 edition pending legal review",
+      "added": "2026-07-25",
+      "review": "legal"
+    }
+  ]
+}
