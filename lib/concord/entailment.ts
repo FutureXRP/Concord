@@ -1,48 +1,34 @@
 /**
- * Gate 3 entailment verification (spec §10, Gate 3). Phase 2.
+ * Gate 3 entailment verification (spec §10, Gate 3).
  *
- * A separate Claude call with ONLY the claim and its cited chunk. No
+ * A separate model call with ONLY the claim and its cited chunk. No
  * conversation history. No study context. No access to the original query.
- * Batched, on a fast model - this is the cost center; budget for it and do
- * not optimize it away.
+ * Runs on whichever provider is configured (hosted fast model, or the same
+ * local model). Fails closed: an unparseable verdict never renders.
  */
 
-import { getAnthropic } from "./generate";
+import { getLLMProvider } from "./llm";
 import type { EntailmentChecker, EntailmentVerdict } from "./firewall";
 
-const ENTAILMENT_MODEL = "claude-haiku-4-5";
-
-export class ClaudeEntailmentChecker implements EntailmentChecker {
+export class ProviderEntailmentChecker implements EntailmentChecker {
   async check(claimText: string, chunkBody: string): Promise<EntailmentVerdict> {
-    const client = getAnthropic();
-    const response = await client.messages.create({
-      model: ENTAILMENT_MODEL,
-      max_tokens: 8,
-      messages: [
-        {
-          role: "user",
-          content: `Passage:\n${chunkBody}\n\nStatement:\n${claimText}\n\nIs the statement directly supported by this passage alone?\nAnswer with exactly one word: SUPPORTED, PARTIAL, or UNSUPPORTED.`,
-        },
-      ],
-    });
-    const text = response.content
-      .filter((b) => b.type === "text")
-      .map((b) => b.text)
-      .join("")
-      .trim()
-      .toUpperCase();
+    const provider = getLLMProvider();
+    if (!provider) return "UNSUPPORTED"; // fail closed; unreachable in sources mode
+    const text = (
+      await provider.completeShort(
+        `Passage:\n${chunkBody}\n\nStatement:\n${claimText}\n\nIs the statement directly supported by this passage alone?\nAnswer with exactly one word: SUPPORTED, PARTIAL, or UNSUPPORTED.`,
+      )
+    ).toUpperCase();
     if (text.includes("UNSUPPORTED")) return "UNSUPPORTED";
     if (text.includes("PARTIAL")) return "PARTIAL";
     if (text.includes("SUPPORTED")) return "SUPPORTED";
-    // Unparseable verdict: fail closed. A claim never renders on an
-    // ambiguous entailment result.
     return "UNSUPPORTED";
   }
 }
 
-/** Entailment is enabled by env flag until Phase 2 makes it unconditional. */
+/** Entailment runs whenever a model is configured; CONCORD_ENTAILMENT=0 disables. */
 export function getEntailmentChecker(): EntailmentChecker | undefined {
   if (process.env.CONCORD_ENTAILMENT === "0") return undefined;
-  if (process.env.ANTHROPIC_API_KEY) return new ClaudeEntailmentChecker();
-  return undefined;
+  if (!getLLMProvider()) return undefined;
+  return new ProviderEntailmentChecker();
 }

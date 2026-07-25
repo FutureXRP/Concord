@@ -6,18 +6,9 @@
  * assembled by the renderer after the firewall verifies every claim.
  */
 
-import Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
-import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
+import { getLLMProvider } from "./llm";
 import type { GenerationOutput, RetrievedChunk } from "./types";
-
-const GENERATION_MODEL = "claude-opus-5";
-
-let _client: Anthropic | null = null;
-export function getAnthropic(): Anthropic {
-  if (!_client) _client = new Anthropic();
-  return _client;
-}
 
 // ---------- Output schema (spec §9.3) ----------
 
@@ -105,24 +96,16 @@ export async function generateSections(
     .filter(Boolean)
     .join("\n\n");
 
-  const client = getAnthropic();
-  const response = await client.messages.parse({
-    model: GENERATION_MODEL,
-    max_tokens: 16000,
-    system: [
-      {
-        type: "text",
-        text: SYSTEM_PROMPT,
-        cache_control: { type: "ephemeral" },
-      },
-    ],
-    messages: [{ role: "user", content: userContent }],
-    output_config: { format: zodOutputFormat(GenerationOutputSchema) },
-  });
-
-  const parsed = response.parsed_output;
-  if (!parsed) {
-    throw new Error("Generation returned unparseable output");
+  const provider = getLLMProvider();
+  if (!provider) {
+    // Standalone sources mode is handled upstream in pipeline.ts; reaching
+    // here without a provider is a wiring error.
+    throw new Error("No language model configured (CONCORD_LLM=none)");
   }
+  const parsed = await provider.generateStructured(
+    SYSTEM_PROMPT,
+    userContent,
+    GenerationOutputSchema,
+  );
   return parsed as GenerationOutput;
 }

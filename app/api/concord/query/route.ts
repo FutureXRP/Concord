@@ -69,12 +69,13 @@ export async function POST(req: NextRequest) {
           case "answered": {
             send("meta", {
               status: response.status,
+              mode: response.mode,
               refs: response.refs,
               canonNotes: response.canonNotes,
               insufficientTraditions: response.insufficientTraditions,
             });
             // Consensus first (§11: the "agree" view leads).
-            const order = ["consensus", "position", "divergence", "historical", "critique"];
+            const order = ["consensus", "sources", "position", "divergence", "historical", "critique"];
             const sections = [...response.result.rendered].sort(
               (a, b) => order.indexOf(a.type) - order.indexOf(b.type),
             );

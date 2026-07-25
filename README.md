@@ -29,9 +29,13 @@ query
   │                                            + exact scripture-ref containment,
   │                                            RRF fusion, tradition balance,
   │                                            authority boost; <3 chunks ⇒ EMPTY
-  └─ generation (lib/concord/generate.ts)      Claude Opus 5, structured JSON only,
-  │                                            citations selected from injected
-  │                                            <source> blocks
+  └─ generation (lib/concord/generate.ts)      structured JSON only, citations
+  │                                            selected from injected <source>
+  │                                            blocks; pluggable model backend
+  │                                            (none / local LLM / Claude) via
+  │                                            lib/concord/llm.ts - with no
+  │                                            model, sources mode renders
+  │                                            verbatim excerpts instead
   └─ firewall (lib/concord/firewall.ts)        Gate 1 CSID-set check (hard fail ⇒
   │                                            regenerate; 2 fails ⇒ decline)
   │                                            Gate 2 quotation byte-verification
@@ -46,26 +50,47 @@ query
 
 ## Getting started
 
-### Local / demo mode (no database)
+Concord is **standalone by default** — no API, no keys, no database:
 
 ```bash
 npm install
-export ANTHROPIC_API_KEY=sk-ant-...   # generation + Gate 3 entailment
-npm run dev                           # http://localhost:3000
+npm run dev        # http://localhost:3000
 ```
 
-When Supabase is not configured, Concord automatically serves retrieval and
-citation resolution from the **checked-in public-domain corpus**
-(`data/sources/`): the full KJV (31,102 verses), the Westminster Confession
-and both catechisms, the Heidelberg Catechism, Belgic Confession, Canons of
-Dort, the 1689 London Baptist Confession, and the ecumenical creeds
-(Apostles', Nicene 381, Athanasian, Chalcedonian Definition, Orange 529) —
-about 32,000 chunks. Sparse BM25 + exact scripture-ref retrieval run
-in-process; the firewall pipeline is identical in both modes.
+Out of the box it runs in **sources mode**: deterministic reference
+validation, BM25 + exact-verse retrieval over the **checked-in public-domain
+corpus** (`data/sources/` — the full KJV's 31,102 verses, the Westminster
+Confession and both catechisms, the Heidelberg Catechism, Belgic Confession,
+Canons of Dort, the 1689 London Baptist Confession, and the ecumenical
+creeds: Apostles', Nicene 381, Athanasian, Chalcedonian Definition, Orange
+529 — about 32,000 chunks), rendered as verbatim, byte-verified excerpts
+with citation chips. Nothing is synthesized, so nothing can be fabricated.
 
-Without `ANTHROPIC_API_KEY`, the deterministic layers still work (reference
-validation, fabricated-verse rejection, retrieval, chip resolution) and
-generation-dependent queries report an error.
+### Optional: add a language model for synthesized comparisons
+
+The model's only job is turning retrieved sources into neutral prose — the
+citation guarantee lives in deterministic code either way.
+
+**Local LLM (stays standalone — runs on your machine):**
+
+```bash
+ollama serve && ollama pull llama3.1   # or llama.cpp server / LM Studio
+export CONCORD_LLM_BASE_URL=http://localhost:11434/v1
+export CONCORD_LLM_MODEL=llama3.1
+npm run dev
+```
+
+**Hosted Claude (best synthesis quality):**
+
+```bash
+export ANTHROPIC_API_KEY=sk-ant-...
+npm run dev
+```
+
+Selection order: `CONCORD_LLM=none|local|anthropic` wins; otherwise local
+when `CONCORD_LLM_BASE_URL` is set, Anthropic when `ANTHROPIC_API_KEY` is
+set, else sources mode. Gate 3 entailment runs on whichever model is
+configured.
 
 ### Production mode (Supabase + pgvector)
 

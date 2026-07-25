@@ -21,7 +21,7 @@ interface VerifiedClaim {
 }
 
 interface VerifiedSection {
-  type: "consensus" | "position" | "divergence" | "critique" | "historical";
+  type: "consensus" | "position" | "divergence" | "critique" | "historical" | "sources";
   tradition: string | null;
   claims: VerifiedClaim[];
 }
@@ -34,6 +34,7 @@ const SECTION_TITLES: Record<VerifiedSection["type"], string> = {
   divergence: "Where they differ",
   critique: "Critique (as critique)",
   historical: "Historical development",
+  sources: "Sources",
 };
 
 export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
@@ -41,6 +42,7 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
   const [view, setView] = useState<"agree" | "differ">("agree");
   const [phase, setPhase] = useState<Phase>("idle");
   const [sections, setSections] = useState<VerifiedSection[]>([]);
+  const [mode, setMode] = useState<"synthesized" | "sources" | null>(null);
   const [insufficientTraditions, setInsufficientTraditions] = useState<string[]>([]);
   const [notice, setNotice] = useState<string | null>(null);
   const [canonNotes, setCanonNotes] = useState<string[]>([]);
@@ -54,6 +56,7 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
       abortRef.current = ac;
       setPhase("loading");
       setSections([]);
+      setMode(null);
       setNotice(null);
       setCanonNotes([]);
       setInsufficientTraditions([]);
@@ -92,6 +95,7 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
 
             switch (event) {
               case "meta":
+                setMode(data.mode ?? null);
                 setCanonNotes(data.canonNotes ?? []);
                 setInsufficientTraditions(data.insufficientTraditions ?? []);
                 setPhase("streaming");
@@ -131,7 +135,10 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
 
   const agreeSections = sections.filter((s) => s.type === "consensus");
   const differSections = sections.filter((s) => s.type !== "consensus");
-  const visible = view === "agree" ? agreeSections : differSections;
+  // Standalone sources mode has no consensus/divergence synthesis: show
+  // everything, skip the toggle.
+  const visible =
+    mode === "sources" ? sections : view === "agree" ? agreeSections : differSections;
 
   return (
     <div>
@@ -151,7 +158,8 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
         <button type="submit">Ask</button>
       </form>
 
-      {sections.length > 0 || phase === "streaming" || phase === "loading" ? (
+      {mode !== "sources" &&
+      (sections.length > 0 || phase === "streaming" || phase === "loading") ? (
         <div className="view-toggle" role="tablist">
           <button
             className={view === "agree" ? "active" : ""}
@@ -169,6 +177,14 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
           >
             Where they differ
           </button>
+        </div>
+      ) : null}
+
+      {mode === "sources" ? (
+        <div className="insufficiency">
+          <strong>Standalone mode.</strong> No language model is configured, so Concord
+          shows the retrieved sources directly, verbatim and cited, instead of a
+          synthesized comparison.
         </div>
       ) : null}
 
@@ -226,7 +242,11 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
         <InsufficiencyNotice traditions={insufficientTraditions} />
       ) : null}
 
-      {phase === "done" && view === "agree" && agreeSections.length === 0 && sections.length > 0 ? (
+      {phase === "done" &&
+      mode !== "sources" &&
+      view === "agree" &&
+      agreeSections.length === 0 &&
+      sections.length > 0 ? (
         <div className="insufficiency">
           No consensus section was supported by the sources for this question. See
           &ldquo;Where they differ&rdquo;.
