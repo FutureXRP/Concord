@@ -1,0 +1,1404 @@
+{
+  "comment": "Single source of truth for book abbreviations (spec 4.3). All CSIDs and reference extraction resolve through this table. Verse counts per chapter live in verse-counts.json.",
+  "books": [
+    {
+      "id": "gen",
+      "name": "Genesis",
+      "order": 1,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ge",
+        "gen",
+        "genesis",
+        "gn"
+      ],
+      "chapters": 50
+    },
+    {
+      "id": "exod",
+      "name": "Exodus",
+      "order": 2,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ex",
+        "exo",
+        "exod",
+        "exodus"
+      ],
+      "chapters": 40
+    },
+    {
+      "id": "lev",
+      "name": "Leviticus",
+      "order": 3,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "le",
+        "lev",
+        "leviticus",
+        "lv"
+      ],
+      "chapters": 27
+    },
+    {
+      "id": "num",
+      "name": "Numbers",
+      "order": 4,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "nm",
+        "nu",
+        "num",
+        "numb",
+        "numbers"
+      ],
+      "chapters": 36
+    },
+    {
+      "id": "deut",
+      "name": "Deuteronomy",
+      "order": 5,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "deu",
+        "deut",
+        "deuteronomy",
+        "dt"
+      ],
+      "chapters": 34
+    },
+    {
+      "id": "josh",
+      "name": "Joshua",
+      "order": 6,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "jos",
+        "josh",
+        "joshua",
+        "jsh"
+      ],
+      "chapters": 24
+    },
+    {
+      "id": "judg",
+      "name": "Judges",
+      "order": 7,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "jdg",
+        "jdgs",
+        "jg",
+        "judg",
+        "judges"
+      ],
+      "chapters": 21
+    },
+    {
+      "id": "ruth",
+      "name": "Ruth",
+      "order": 8,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "rth",
+        "ru",
+        "ruth"
+      ],
+      "chapters": 4
+    },
+    {
+      "id": "1sam",
+      "name": "1 Samuel",
+      "order": 9,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "1 sam",
+        "1 samuel",
+        "1 sm",
+        "1sa",
+        "1sam",
+        "1st samuel",
+        "first samuel",
+        "i samuel"
+      ],
+      "chapters": 31
+    },
+    {
+      "id": "2sam",
+      "name": "2 Samuel",
+      "order": 10,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "2 sam",
+        "2 samuel",
+        "2 sm",
+        "2nd samuel",
+        "2sa",
+        "2sam",
+        "ii samuel",
+        "second samuel"
+      ],
+      "chapters": 24
+    },
+    {
+      "id": "1kgs",
+      "name": "1 Kings",
+      "order": 11,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "1 kg",
+        "1 kgs",
+        "1 kings",
+        "1kgs",
+        "1ki",
+        "1st kings",
+        "first kings",
+        "i kings"
+      ],
+      "chapters": 22
+    },
+    {
+      "id": "2kgs",
+      "name": "2 Kings",
+      "order": 12,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "2 kg",
+        "2 kgs",
+        "2 kings",
+        "2kgs",
+        "2ki",
+        "2nd kings",
+        "ii kings",
+        "second kings"
+      ],
+      "chapters": 25
+    },
+    {
+      "id": "1chr",
+      "name": "1 Chronicles",
+      "order": 13,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "1 ch",
+        "1 chr",
+        "1 chronicles",
+        "1chr",
+        "1chron",
+        "1st chronicles",
+        "first chronicles",
+        "i chronicles"
+      ],
+      "chapters": 29
+    },
+    {
+      "id": "2chr",
+      "name": "2 Chronicles",
+      "order": 14,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "2 ch",
+        "2 chr",
+        "2 chronicles",
+        "2chr",
+        "2chron",
+        "2nd chronicles",
+        "ii chronicles",
+        "second chronicles"
+      ],
+      "chapters": 36
+    },
+    {
+      "id": "ezra",
+      "name": "Ezra",
+      "order": 15,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ezr",
+        "ezra"
+      ],
+      "chapters": 10
+    },
+    {
+      "id": "neh",
+      "name": "Nehemiah",
+      "order": 16,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ne",
+        "neh",
+        "nehemiah"
+      ],
+      "chapters": 13
+    },
+    {
+      "id": "esth",
+      "name": "Esther",
+      "order": 17,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "es",
+        "est",
+        "esth",
+        "esther"
+      ],
+      "chapters": 10
+    },
+    {
+      "id": "job",
+      "name": "Job",
+      "order": 18,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "jb",
+        "job"
+      ],
+      "chapters": 42
+    },
+    {
+      "id": "ps",
+      "name": "Psalms",
+      "order": 19,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ps",
+        "psa",
+        "psalm",
+        "psalms",
+        "psl",
+        "psm",
+        "pss"
+      ],
+      "chapters": 150
+    },
+    {
+      "id": "prov",
+      "name": "Proverbs",
+      "order": 20,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "pr",
+        "pro",
+        "prov",
+        "proverbs",
+        "prv"
+      ],
+      "chapters": 31
+    },
+    {
+      "id": "eccl",
+      "name": "Ecclesiastes",
+      "order": 21,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ec",
+        "ecc",
+        "eccl",
+        "ecclesiastes",
+        "qoh",
+        "qoheleth"
+      ],
+      "chapters": 12
+    },
+    {
+      "id": "song",
+      "name": "Song of Solomon",
+      "order": 22,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "cant",
+        "canticles",
+        "sng",
+        "song",
+        "song of solomon",
+        "song of songs",
+        "sos"
+      ],
+      "chapters": 8
+    },
+    {
+      "id": "isa",
+      "name": "Isaiah",
+      "order": 23,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "is",
+        "isa",
+        "isaiah"
+      ],
+      "chapters": 66
+    },
+    {
+      "id": "jer",
+      "name": "Jeremiah",
+      "order": 24,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "je",
+        "jer",
+        "jeremiah",
+        "jr"
+      ],
+      "chapters": 52
+    },
+    {
+      "id": "lam",
+      "name": "Lamentations",
+      "order": 25,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "la",
+        "lam",
+        "lamentations"
+      ],
+      "chapters": 5
+    },
+    {
+      "id": "ezek",
+      "name": "Ezekiel",
+      "order": 26,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "eze",
+        "ezek",
+        "ezekiel",
+        "ezk"
+      ],
+      "chapters": 48
+    },
+    {
+      "id": "dan",
+      "name": "Daniel",
+      "order": 27,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "da",
+        "dan",
+        "daniel",
+        "dn"
+      ],
+      "chapters": 12
+    },
+    {
+      "id": "hos",
+      "name": "Hosea",
+      "order": 28,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ho",
+        "hos",
+        "hosea"
+      ],
+      "chapters": 14
+    },
+    {
+      "id": "joel",
+      "name": "Joel",
+      "order": 29,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "jl",
+        "joe",
+        "joel"
+      ],
+      "chapters": 3
+    },
+    {
+      "id": "amos",
+      "name": "Amos",
+      "order": 30,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "am",
+        "amos"
+      ],
+      "chapters": 9
+    },
+    {
+      "id": "obad",
+      "name": "Obadiah",
+      "order": 31,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "ob",
+        "oba",
+        "obad",
+        "obadiah"
+      ],
+      "chapters": 1
+    },
+    {
+      "id": "jonah",
+      "name": "Jonah",
+      "order": 32,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "jnh",
+        "jon",
+        "jonah"
+      ],
+      "chapters": 4
+    },
+    {
+      "id": "mic",
+      "name": "Micah",
+      "order": 33,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "mc",
+        "mic",
+        "micah"
+      ],
+      "chapters": 7
+    },
+    {
+      "id": "nah",
+      "name": "Nahum",
+      "order": 34,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "na",
+        "nah",
+        "nahum"
+      ],
+      "chapters": 3
+    },
+    {
+      "id": "hab",
+      "name": "Habakkuk",
+      "order": 35,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "hab",
+        "habakkuk",
+        "hb"
+      ],
+      "chapters": 3
+    },
+    {
+      "id": "zeph",
+      "name": "Zephaniah",
+      "order": 36,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "zep",
+        "zeph",
+        "zephaniah",
+        "zp"
+      ],
+      "chapters": 3
+    },
+    {
+      "id": "hag",
+      "name": "Haggai",
+      "order": 37,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "hag",
+        "haggai",
+        "hg"
+      ],
+      "chapters": 2
+    },
+    {
+      "id": "zech",
+      "name": "Zechariah",
+      "order": 38,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "zc",
+        "zec",
+        "zech",
+        "zechariah"
+      ],
+      "chapters": 14
+    },
+    {
+      "id": "mal",
+      "name": "Malachi",
+      "order": 39,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox",
+        "tanakh"
+      ],
+      "aliases": [
+        "mal",
+        "malachi",
+        "ml"
+      ],
+      "chapters": 4
+    },
+    {
+      "id": "matt",
+      "name": "Matthew",
+      "order": 40,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "mat",
+        "matt",
+        "matthew",
+        "mt"
+      ],
+      "chapters": 28
+    },
+    {
+      "id": "mark",
+      "name": "Mark",
+      "order": 41,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "mark",
+        "mk",
+        "mr",
+        "mrk"
+      ],
+      "chapters": 16
+    },
+    {
+      "id": "luke",
+      "name": "Luke",
+      "order": 42,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "lk",
+        "luk",
+        "luke"
+      ],
+      "chapters": 24
+    },
+    {
+      "id": "john",
+      "name": "John",
+      "order": 43,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "jhn",
+        "jn",
+        "joh",
+        "john"
+      ],
+      "chapters": 21
+    },
+    {
+      "id": "acts",
+      "name": "Acts",
+      "order": 44,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "ac",
+        "act",
+        "acts",
+        "acts of the apostles"
+      ],
+      "chapters": 28
+    },
+    {
+      "id": "rom",
+      "name": "Romans",
+      "order": 45,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "rm",
+        "ro",
+        "rom",
+        "romans"
+      ],
+      "chapters": 16
+    },
+    {
+      "id": "1cor",
+      "name": "1 Corinthians",
+      "order": 46,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "1 co",
+        "1 cor",
+        "1 corinthians",
+        "1cor",
+        "1st corinthians",
+        "first corinthians",
+        "i corinthians"
+      ],
+      "chapters": 16
+    },
+    {
+      "id": "2cor",
+      "name": "2 Corinthians",
+      "order": 47,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "2 co",
+        "2 cor",
+        "2 corinthians",
+        "2cor",
+        "2nd corinthians",
+        "ii corinthians",
+        "second corinthians"
+      ],
+      "chapters": 13
+    },
+    {
+      "id": "gal",
+      "name": "Galatians",
+      "order": 48,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "ga",
+        "gal",
+        "galatians"
+      ],
+      "chapters": 6
+    },
+    {
+      "id": "eph",
+      "name": "Ephesians",
+      "order": 49,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "ep",
+        "eph",
+        "ephes",
+        "ephesians"
+      ],
+      "chapters": 6
+    },
+    {
+      "id": "phil",
+      "name": "Philippians",
+      "order": 50,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "phil",
+        "philippians",
+        "php",
+        "pp"
+      ],
+      "chapters": 4
+    },
+    {
+      "id": "col",
+      "name": "Colossians",
+      "order": 51,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "co",
+        "col",
+        "colossians"
+      ],
+      "chapters": 4
+    },
+    {
+      "id": "1thess",
+      "name": "1 Thessalonians",
+      "order": 52,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "1 th",
+        "1 thess",
+        "1 thessalonians",
+        "1st thessalonians",
+        "1thes",
+        "1thess",
+        "first thessalonians",
+        "i thessalonians"
+      ],
+      "chapters": 5
+    },
+    {
+      "id": "2thess",
+      "name": "2 Thessalonians",
+      "order": 53,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "2 th",
+        "2 thess",
+        "2 thessalonians",
+        "2nd thessalonians",
+        "2thes",
+        "2thess",
+        "ii thessalonians",
+        "second thessalonians"
+      ],
+      "chapters": 3
+    },
+    {
+      "id": "1tim",
+      "name": "1 Timothy",
+      "order": 54,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "1 ti",
+        "1 tim",
+        "1 timothy",
+        "1st timothy",
+        "1tim",
+        "first timothy",
+        "i timothy"
+      ],
+      "chapters": 6
+    },
+    {
+      "id": "2tim",
+      "name": "2 Timothy",
+      "order": 55,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "2 ti",
+        "2 tim",
+        "2 timothy",
+        "2nd timothy",
+        "2tim",
+        "ii timothy",
+        "second timothy"
+      ],
+      "chapters": 4
+    },
+    {
+      "id": "titus",
+      "name": "Titus",
+      "order": 56,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "ti",
+        "tit",
+        "titus"
+      ],
+      "chapters": 3
+    },
+    {
+      "id": "phlm",
+      "name": "Philemon",
+      "order": 57,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "philem",
+        "philemon",
+        "phlm",
+        "phm",
+        "pm"
+      ],
+      "chapters": 1
+    },
+    {
+      "id": "heb",
+      "name": "Hebrews",
+      "order": 58,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "heb",
+        "hebrew",
+        "hebrews"
+      ],
+      "chapters": 13
+    },
+    {
+      "id": "jas",
+      "name": "James",
+      "order": 59,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "jam",
+        "james",
+        "jas",
+        "jm",
+        "jms"
+      ],
+      "chapters": 5
+    },
+    {
+      "id": "1pet",
+      "name": "1 Peter",
+      "order": 60,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "1 pe",
+        "1 pet",
+        "1 peter",
+        "1pet",
+        "1pt",
+        "1st peter",
+        "first peter",
+        "i peter"
+      ],
+      "chapters": 5
+    },
+    {
+      "id": "2pet",
+      "name": "2 Peter",
+      "order": 61,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "2 pe",
+        "2 pet",
+        "2 peter",
+        "2nd peter",
+        "2pet",
+        "2pt",
+        "ii peter",
+        "second peter"
+      ],
+      "chapters": 3
+    },
+    {
+      "id": "1john",
+      "name": "1 John",
+      "order": 62,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "1 jn",
+        "1 john",
+        "1jn",
+        "1john",
+        "1st john",
+        "first john",
+        "i john"
+      ],
+      "chapters": 5
+    },
+    {
+      "id": "2john",
+      "name": "2 John",
+      "order": 63,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "2 jn",
+        "2 john",
+        "2jn",
+        "2john",
+        "2nd john",
+        "ii john",
+        "second john"
+      ],
+      "chapters": 1
+    },
+    {
+      "id": "3john",
+      "name": "3 John",
+      "order": 64,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "3 jn",
+        "3 john",
+        "3jn",
+        "3john",
+        "3rd john",
+        "iii john",
+        "third john"
+      ],
+      "chapters": 1
+    },
+    {
+      "id": "jude",
+      "name": "Jude",
+      "order": 65,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "jde",
+        "jud",
+        "jude"
+      ],
+      "chapters": 1
+    },
+    {
+      "id": "rev",
+      "name": "Revelation",
+      "order": 66,
+      "canon_set": [
+        "protestant",
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "apocalypse",
+        "re",
+        "rev",
+        "revelation",
+        "revelations",
+        "rv",
+        "the revelation"
+      ],
+      "chapters": 22
+    }
+  ],
+  "deuterocanon": [
+    {
+      "id": "tob",
+      "name": "Tobit",
+      "order": 1,
+      "canon_set": [
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "tb",
+        "tob",
+        "tobias",
+        "tobit"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "jdt",
+      "name": "Judith",
+      "order": 2,
+      "canon_set": [
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "jdt",
+        "jth",
+        "judith"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "wis",
+      "name": "Wisdom",
+      "order": 3,
+      "canon_set": [
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "wis",
+        "wisdom",
+        "wisdom of solomon",
+        "ws"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "sir",
+      "name": "Sirach",
+      "order": 4,
+      "canon_set": [
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "ben sira",
+        "ecclesiasticus",
+        "ecclus",
+        "sir",
+        "sirach"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "bar",
+      "name": "Baruch",
+      "order": 5,
+      "canon_set": [
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "bar",
+        "baruch",
+        "br"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "1macc",
+      "name": "1 Maccabees",
+      "order": 6,
+      "canon_set": [
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "1 mac",
+        "1 macc",
+        "1 maccabees",
+        "1macc",
+        "1st maccabees",
+        "first maccabees",
+        "i maccabees"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "2macc",
+      "name": "2 Maccabees",
+      "order": 7,
+      "canon_set": [
+        "catholic",
+        "orthodox"
+      ],
+      "aliases": [
+        "2 mac",
+        "2 macc",
+        "2 maccabees",
+        "2macc",
+        "2nd maccabees",
+        "ii maccabees",
+        "second maccabees"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "3macc",
+      "name": "3 Maccabees",
+      "order": 8,
+      "canon_set": [
+        "orthodox"
+      ],
+      "aliases": [
+        "3 mac",
+        "3 macc",
+        "3 maccabees",
+        "3macc",
+        "iii maccabees",
+        "third maccabees"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "4macc",
+      "name": "4 Maccabees",
+      "order": 9,
+      "canon_set": [
+        "orthodox"
+      ],
+      "aliases": [
+        "4 mac",
+        "4 macc",
+        "4 maccabees",
+        "4macc",
+        "fourth maccabees",
+        "iv maccabees"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "1esd",
+      "name": "1 Esdras",
+      "order": 10,
+      "canon_set": [
+        "orthodox"
+      ],
+      "aliases": [
+        "1 es",
+        "1 esd",
+        "1 esdras",
+        "1esd",
+        "first esdras",
+        "i esdras"
+      ],
+      "chapters": null
+    },
+    {
+      "id": "pray-man",
+      "name": "Prayer of Manasseh",
+      "order": 11,
+      "canon_set": [
+        "orthodox"
+      ],
+      "aliases": [
+        "man",
+        "pray-man",
+        "prayer of manasseh",
+        "prayer of manasses"
+      ],
+      "chapters": null
+    }
+  ]
+}

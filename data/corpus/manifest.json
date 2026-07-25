@@ -1,0 +1,63 @@
+{
+  "comment": "Corpus manifest (spec §5). Every entry records its license tier BEFORE ingest. Tier A/B: stored + embedded. Tier C: proxied at render, never stored. Tier D: described via secondary scholarship only (see tier-d.json).",
+  "entries": [
+    { "work_id": "scripture:kjv", "title": "King James Version", "tier": "A", "phase": 1, "source": "https://github.com/aruljohn/Bible-kjv", "tradition": "patristic-undivided", "authority_class": "scripture" },
+    { "work_id": "scripture:asv", "title": "American Standard Version", "tier": "A", "phase": 1, "source": "https://ebible.org/asv/", "tradition": "patristic-undivided", "authority_class": "scripture" },
+    { "work_id": "scripture:web", "title": "World English Bible", "tier": "A", "phase": 1, "source": "https://ebible.org/web/", "tradition": "patristic-undivided", "authority_class": "scripture" },
+    { "work_id": "scripture:drb", "title": "Douay-Rheims", "tier": "A", "phase": 3, "source": "https://www.gutenberg.org/", "tradition": "catholic-roman", "authority_class": "scripture" },
+    { "work_id": "scripture:ylt", "title": "Young's Literal Translation", "tier": "A", "phase": 3, "source": "https://ebible.org/", "tradition": "patristic-undivided", "authority_class": "scripture" },
+    { "work_id": "scripture:vul", "title": "Latin Vulgate (Clementine)", "tier": "A", "phase": 3, "source": "https://vulsearch.sourceforge.net/", "tradition": "catholic-roman", "authority_class": "scripture" },
+    { "work_id": "scripture:lxx-brenton", "title": "Brenton's Septuagint", "tier": "A", "phase": 3, "source": "https://ebible.org/eng-Brenton/", "tradition": "orthodox-eastern", "authority_class": "scripture" },
+    { "work_id": "scripture:wlc", "title": "Westminster Leningrad Codex", "tier": "A", "phase": 1, "source": "https://github.com/openscriptures/morphhb", "tradition": "judaism-rabbinic", "authority_class": "scripture" },
+    { "work_id": "scripture:oshb", "title": "Open Scriptures Hebrew Bible (Strong's-tagged)", "tier": "B", "phase": 1, "source": "https://github.com/openscriptures/morphhb", "tradition": "judaism-rabbinic", "authority_class": "scripture" },
+    { "work_id": "scripture:sblgnt", "title": "SBL Greek New Testament", "tier": "B", "phase": 1, "source": "https://sblgnt.com/", "tradition": "patristic-undivided", "authority_class": "scripture" },
+    { "work_id": "scripture:stepbible", "title": "STEPBible tagged datasets", "tier": "B", "phase": 1, "source": "https://github.com/STEPBible/STEPBible-Data", "tradition": "patristic-undivided", "authority_class": "scripture" },
+
+    { "work_id": "rabbinic:sefaria", "title": "Sefaria full data dump (Tanakh, Mishnah, Talmud, Mishneh Torah, classical commentators)", "tier": "B", "phase": 3, "source": "https://github.com/Sefaria/Sefaria-Export", "tradition": "judaism-rabbinic", "authority_class": "authoritative-teacher", "note": "Download the dump; do not scrape the live API for bulk ingest." },
+    { "work_id": "scholarly:josephus:works", "title": "Josephus (Whiston translation)", "tier": "A", "phase": 3, "source": "https://www.gutenberg.org/ebooks/2848", "tradition": "judaism-second-temple", "authority_class": "representative-theologian" },
+
+    { "work_id": "father:schaff:anf", "title": "Ante-Nicene Fathers (10 vols, Schaff)", "tier": "A", "phase": 1, "source": "https://ccel.org/fathers", "tradition": "patristic-undivided", "authority_class": "authoritative-teacher" },
+    { "work_id": "father:schaff:npnf1", "title": "Nicene and Post-Nicene Fathers, Series I", "tier": "A", "phase": 3, "source": "https://ccel.org/fathers", "tradition": "patristic-undivided", "authority_class": "authoritative-teacher" },
+    { "work_id": "father:schaff:npnf2", "title": "Nicene and Post-Nicene Fathers, Series II", "tier": "A", "phase": 3, "source": "https://ccel.org/fathers", "tradition": "patristic-undivided", "authority_class": "authoritative-teacher" },
+    { "work_id": "council:ecumenical:canons", "title": "Ecumenical council canons and definitions", "tier": "A", "phase": 1, "source": "https://ccel.org/ccel/schaff/npnf214", "tradition": "patristic-undivided", "authority_class": "ecumenical-definition" },
+    { "work_id": "council:constantinople-i:creed", "title": "Nicene Creed (381)", "tier": "A", "phase": 1, "source": "https://github.com/NonlinearFruit/Creeds.json", "tradition": "patristic-undivided", "authority_class": "ecumenical-definition" },
+    { "work_id": "council:chalcedon:definition", "title": "Chalcedonian Definition", "tier": "A", "phase": 1, "source": "https://github.com/NonlinearFruit/Creeds.json", "tradition": "patristic-undivided", "authority_class": "ecumenical-definition" },
+    { "work_id": "council:orange-ii:canon", "title": "Council of Orange (529)", "tier": "A", "phase": 1, "source": "https://github.com/NonlinearFruit/Creeds.json", "tradition": "patristic-undivided", "authority_class": "ecumenical-definition" },
+    { "work_id": "confession:apostles-creed", "title": "Apostles' Creed", "tier": "A", "phase": 1, "source": "https://github.com/NonlinearFruit/Creeds.json", "tradition": "patristic-undivided", "authority_class": "ecumenical-definition" },
+    { "work_id": "confession:athanasian-creed", "title": "Athanasian Creed", "tier": "A", "phase": 1, "source": "https://github.com/NonlinearFruit/Creeds.json", "tradition": "patristic-undivided", "authority_class": "ecumenical-definition" },
+
+    { "work_id": "systematic:aquinas:summa", "title": "Summa Theologica (English Dominican Province)", "tier": "A", "phase": 3, "source": "https://www.ccel.org/ccel/aquinas/summa", "tradition": "catholic-roman", "authority_class": "authoritative-teacher" },
+    { "work_id": "confession:trent", "title": "Council of Trent, canons and decrees", "tier": "A", "phase": 3, "source": "https://www.gutenberg.org/", "tradition": "catholic-roman", "authority_class": "magisterial" },
+    { "work_id": "magisterium:ccc", "title": "Catechism of the Catholic Church", "tier": "C", "phase": 3, "source": "https://www.vatican.va/", "tradition": "catholic-roman", "authority_class": "magisterial", "note": "License tier varies by jurisdiction; treated as Tier C until verified per spec §5.1." },
+    { "work_id": "systematic:philokalia", "title": "Philokalia (public-domain translations only)", "tier": "A", "phase": 3, "source": "various", "tradition": "orthodox-eastern", "authority_class": "authoritative-teacher" },
+
+    { "work_id": "systematic:calvin:institutes", "title": "Institutes of the Christian Religion (Beveridge)", "tier": "A", "phase": 3, "source": "https://www.ccel.org/ccel/calvin/institutes", "tradition": "reformed", "authority_class": "authoritative-teacher" },
+    { "work_id": "confession:book-of-concord", "title": "The Book of Concord", "tier": "A", "phase": 3, "source": "https://bookofconcord.org/", "tradition": "lutheran", "authority_class": "confessional-standard" },
+    { "work_id": "confession:westminster", "title": "Westminster Confession of Faith", "tier": "A", "phase": 1, "source": "https://www.ccel.org/ccel/anonymous/westminster3", "tradition": "reformed", "authority_class": "confessional-standard" },
+    { "work_id": "confession:westminster-shorter", "title": "Westminster Shorter Catechism", "tier": "A", "phase": 1, "source": "https://www.ccel.org/ccel/anonymous/westminster2", "tradition": "reformed", "authority_class": "confessional-standard" },
+    { "work_id": "confession:westminster-larger", "title": "Westminster Larger Catechism", "tier": "A", "phase": 1, "source": "https://www.ccel.org/ccel/anonymous/westminster1", "tradition": "reformed", "authority_class": "confessional-standard" },
+    { "work_id": "confession:thirty-nine-articles", "title": "Thirty-Nine Articles", "tier": "A", "phase": 3, "source": "https://www.ccel.org/", "tradition": "anglican", "authority_class": "confessional-standard" },
+    { "work_id": "confession:heidelberg", "title": "Heidelberg Catechism", "tier": "A", "phase": 3, "source": "https://www.ccel.org/", "tradition": "reformed", "authority_class": "confessional-standard" },
+    { "work_id": "confession:belgic", "title": "Belgic Confession", "tier": "A", "phase": 3, "source": "https://www.ccel.org/", "tradition": "reformed", "authority_class": "confessional-standard" },
+    { "work_id": "confession:dort", "title": "Canons of Dort", "tier": "A", "phase": 3, "source": "https://www.ccel.org/", "tradition": "reformed", "authority_class": "confessional-standard" },
+    { "work_id": "confession:london-baptist-1689", "title": "London Baptist Confession 1689", "tier": "A", "phase": 3, "source": "https://www.ccel.org/", "tradition": "baptist", "authority_class": "confessional-standard" },
+    { "work_id": "systematic:wesley:sermons", "title": "Wesley's sermons and notes", "tier": "A", "phase": 3, "source": "https://www.ccel.org/ccel/wesley", "tradition": "methodist-wesleyan", "authority_class": "authoritative-teacher" },
+    { "work_id": "confession:schleitheim", "title": "Schleitheim Confession", "tier": "A", "phase": 3, "source": "https://www.ccel.org/", "tradition": "anabaptist", "authority_class": "confessional-standard" },
+    { "work_id": "confession:dordrecht", "title": "Dordrecht Confession", "tier": "A", "phase": 3, "source": "https://www.ccel.org/", "tradition": "anabaptist", "authority_class": "confessional-standard" },
+
+    { "work_id": "lexicon:strongs-h", "title": "Strong's Hebrew Dictionary", "tier": "A", "phase": 1, "source": "https://github.com/openscriptures/strongs", "tradition": "scholarly-critical", "authority_class": "representative-theologian" },
+    { "work_id": "lexicon:strongs-g", "title": "Strong's Greek Dictionary", "tier": "A", "phase": 1, "source": "https://github.com/openscriptures/strongs", "tradition": "scholarly-critical", "authority_class": "representative-theologian" },
+    { "work_id": "lexicon:thayer", "title": "Thayer's Greek Lexicon", "tier": "A", "phase": 3, "source": "public domain", "tradition": "scholarly-critical", "authority_class": "representative-theologian" },
+    { "work_id": "lexicon:gesenius", "title": "Gesenius' Hebrew Lexicon", "tier": "A", "phase": 3, "source": "public domain", "tradition": "scholarly-critical", "authority_class": "representative-theologian" },
+    { "work_id": "lexicon:bdb", "title": "Brown-Driver-Briggs", "tier": "A", "phase": 3, "source": "public domain", "tradition": "scholarly-critical", "authority_class": "representative-theologian" },
+    { "work_id": "scholarly:eusebius:ecclesiastical-history", "title": "Eusebius, Ecclesiastical History", "tier": "A", "phase": 3, "source": "https://ccel.org/", "tradition": "patristic-undivided", "authority_class": "representative-theologian" },
+    { "work_id": "scholarly:foxe:acts-and-monuments", "title": "Foxe, Acts and Monuments", "tier": "A", "phase": 3, "source": "public domain", "tradition": "reformed", "authority_class": "popular-expression" },
+
+    { "work_id": "quran:pickthall", "title": "Quran (Pickthall)", "tier": "A", "phase": 4, "source": "public domain", "tradition": "islam-sunni", "authority_class": "scripture" },
+    { "work_id": "quran:yusuf-ali", "title": "Quran (Yusuf Ali)", "tier": "A", "phase": 4, "source": "public domain", "tradition": "islam-sunni", "authority_class": "scripture" },
+    { "work_id": "nrm:lds:book-of-mormon", "title": "Book of Mormon", "tier": "A", "phase": 4, "source": "public domain (1830 ed.)", "tradition": "nrm-lds", "authority_class": "scripture" },
+    { "work_id": "nrm:lds:doctrine-and-covenants", "title": "Doctrine and Covenants", "tier": "A", "phase": 4, "source": "public domain (early eds.)", "tradition": "nrm-lds", "authority_class": "scripture" },
+    { "work_id": "nrm:lds:pearl-of-great-price", "title": "Pearl of Great Price", "tier": "A", "phase": 4, "source": "public domain (early eds.)", "tradition": "nrm-lds", "authority_class": "scripture" }
+  ],
+  "tier_c_translations": ["niv", "esv", "nasb", "nrsv", "csb", "nlt", "msg"]
+}
