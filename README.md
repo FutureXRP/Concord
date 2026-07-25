@@ -105,6 +105,32 @@ npm run ingest -- confessions  # confessional corpus with embeddings
 npm run dev
 ```
 
+## Deploying (both options are free)
+
+### GitHub Pages — click-a-link test build ($0, no accounts, no keys)
+
+Pushing to `main` runs `.github/workflows/pages.yml`, which publishes a
+**fully static build** to:
+
+> **https://futurexrp.github.io/Concord/**
+
+The entire standalone pipeline runs in the visitor's browser: the corpus
+(~1.7 MB) is fetched as static assets, indexed client-side, and queries,
+citation chips, and reference validation all work with no server at all.
+If the first run reports Pages is not enabled: repo **Settings → Pages →
+Source: "GitHub Actions"**, then re-run the workflow.
+
+This build is sources mode only (static hosting cannot run a model). It is
+the fastest way to evaluate the real UI and the citation guarantee.
+
+### Vercel — full app on the free Hobby tier
+
+Import the repo at vercel.com (Add New → Project → `FutureXRP/Concord`) and
+deploy with **no environment variables** — it runs the server-backed
+standalone mode, identical behavior to the demo but with the corpus on the
+server. Later, adding `ANTHROPIC_API_KEY` (your choice, your spend) turns
+on synthesized comparisons; nothing else changes.
+
 ## Verification
 
 ```bash

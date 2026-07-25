@@ -63,7 +63,7 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
   const [canonNotes, setCanonNotes] = useState<string[]>([]);
   const [openSource, setOpenSource] = useState<ResolvedSource | null>(null);
   const abortRef = useRef<AbortController | null>(null);
-  const { apiBaseUrl } = useConcordConfig();
+  const { apiBaseUrl, engine } = useConcordConfig();
 
   const run = useCallback(
     async (q: string) => {
@@ -76,6 +76,33 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
       setNotice(null);
       setCanonNotes([]);
       setInsufficientTraditions([]);
+
+      // Static build: the whole standalone pipeline runs in the browser.
+      if (engine === "client") {
+        try {
+          const { clientQuery } = await import("../../lib/concord/browser/engine");
+          const res = await clientQuery(q);
+          switch (res.status) {
+            case "invalid-reference":
+              setNotice(res.problems.map((p) => p.reason).join(" "));
+              break;
+            case "insufficient":
+              setCanonNotes(res.canonNotes);
+              setNotice(res.reason);
+              break;
+            case "answered":
+              setMode("sources");
+              setCanonNotes(res.canonNotes);
+              setSections(res.result.rendered as VerifiedSection[]);
+              break;
+          }
+          setPhase("done");
+        } catch {
+          setNotice("The corpus could not be loaded.");
+          setPhase("error");
+        }
+        return;
+      }
 
       try {
         const res = await fetch(`${apiBaseUrl}/api/concord/query`, {
@@ -146,7 +173,7 @@ export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTradi
         if ((e as Error).name !== "AbortError") setPhase("error");
       }
     },
-    [apiBaseUrl],
+    [apiBaseUrl, engine],
   );
 
   useEffect(() => {
