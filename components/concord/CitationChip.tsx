@@ -7,6 +7,7 @@
  */
 
 import { useState } from "react";
+import { useConcordConfig } from "./config";
 
 /** Short human label for a CSID: 'confession:westminster-shorter:q1' -> 'WSC Q1'. */
 export function chipLabel(csid: string): string {
@@ -63,10 +64,13 @@ export function CitationChip({
   onResolved: (source: ResolvedSource) => void;
 }) {
   const [errored, setErrored] = useState(false);
+  const { apiBaseUrl, translation } = useConcordConfig();
 
   const handleClick = async () => {
     try {
-      const res = await fetch(`/api/concord/resolve?csid=${encodeURIComponent(csid)}`);
+      const params = new URLSearchParams({ csid });
+      if (translation) params.set("translation", translation);
+      const res = await fetch(`${apiBaseUrl}/api/concord/resolve?${params}`);
       const data = (await res.json()) as ResolvedSource;
       if (!res.ok || data.kind === "unresolved") {
         setErrored(true);

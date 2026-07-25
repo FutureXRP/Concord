@@ -17,21 +17,33 @@
 
 import { NextRequest } from "next/server";
 import { runConcordQuery } from "@/lib/concord/pipeline";
+import { corsHeaders, preflightResponse } from "@/lib/concord/cors";
 import type { Tradition } from "@/lib/concord/types";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
 
+export async function OPTIONS(req: NextRequest) {
+  return preflightResponse(req.headers.get("origin"));
+}
+
 export async function POST(req: NextRequest) {
+  const cors = corsHeaders(req.headers.get("origin"));
   let body: { query?: string; traditions?: string[]; studyId?: string };
   try {
     body = await req.json();
   } catch {
-    return new Response(JSON.stringify({ error: "invalid JSON body" }), { status: 400 });
+    return new Response(JSON.stringify({ error: "invalid JSON body" }), {
+      status: 400,
+      headers: cors,
+    });
   }
   const query = (body.query ?? "").trim();
   if (!query) {
-    return new Response(JSON.stringify({ error: "query is required" }), { status: 400 });
+    return new Response(JSON.stringify({ error: "query is required" }), {
+      status: 400,
+      headers: cors,
+    });
   }
   const traditions = (body.traditions ?? []) as Tradition[];
 
@@ -103,6 +115,7 @@ export async function POST(req: NextRequest) {
       "Content-Type": "text/event-stream",
       "Cache-Control": "no-cache, no-transform",
       Connection: "keep-alive",
+      ...cors,
     },
   });
 }

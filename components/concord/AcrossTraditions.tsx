@@ -8,10 +8,11 @@
  * Defaults to shared ground ("Where they agree") first.
  */
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CitationChip, type ResolvedSource } from "./CitationChip";
 import { SourcePanel } from "./SourcePanel";
 import { InsufficiencyNotice } from "./InsufficiencyNotice";
+import { useConcordConfig } from "./config";
 
 interface VerifiedClaim {
   text: string;
@@ -37,8 +38,22 @@ const SECTION_TITLES: Record<VerifiedSection["type"], string> = {
   sources: "Sources",
 };
 
-export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
-  const [query, setQuery] = useState(initialQuery ?? "");
+export interface AcrossTraditionsProps {
+  /** Pre-filled question. */
+  initialQuery?: string;
+  /**
+   * The passage the host study is on (e.g. "Romans 3:21-26"). Used to
+   * compose a default question when initialQuery is not given.
+   */
+  passage?: string;
+  /** Run the initial question immediately on mount (host-app embedding). */
+  autoRun?: boolean;
+}
+
+export function AcrossTraditions({ initialQuery, passage, autoRun }: AcrossTraditionsProps) {
+  const defaultQuery =
+    initialQuery ?? (passage ? `What do the traditions teach about ${passage}?` : "");
+  const [query, setQuery] = useState(defaultQuery);
   const [view, setView] = useState<"agree" | "differ">("agree");
   const [phase, setPhase] = useState<Phase>("idle");
   const [sections, setSections] = useState<VerifiedSection[]>([]);
@@ -48,6 +63,7 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
   const [canonNotes, setCanonNotes] = useState<string[]>([]);
   const [openSource, setOpenSource] = useState<ResolvedSource | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const { apiBaseUrl } = useConcordConfig();
 
   const run = useCallback(
     async (q: string) => {
@@ -62,7 +78,7 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
       setInsufficientTraditions([]);
 
       try {
-        const res = await fetch("/api/concord/query", {
+        const res = await fetch(`${apiBaseUrl}/api/concord/query`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ query: q, traditions: [] }),
@@ -130,8 +146,14 @@ export function AcrossTraditions({ initialQuery }: { initialQuery?: string }) {
         if ((e as Error).name !== "AbortError") setPhase("error");
       }
     },
-    [],
+    [apiBaseUrl],
   );
+
+  useEffect(() => {
+    if (autoRun && defaultQuery) run(defaultQuery);
+    // Run once on mount when the host app embeds with autoRun.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const agreeSections = sections.filter((s) => s.type === "consensus");
   const differSections = sections.filter((s) => s.type !== "consensus");

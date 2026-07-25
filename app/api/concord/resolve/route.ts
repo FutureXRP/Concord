@@ -9,15 +9,21 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { resolveCSID } from "@/lib/concord/csid";
+import { corsHeaders, preflightResponse } from "@/lib/concord/cors";
 import { fetchVerse } from "@/lib/youversion/proxy";
 
 export const runtime = "nodejs";
 
+export async function OPTIONS(req: NextRequest) {
+  return preflightResponse(req.headers.get("origin"));
+}
+
 export async function GET(req: NextRequest) {
+  const cors = corsHeaders(req.headers.get("origin"));
   const csid = req.nextUrl.searchParams.get("csid");
   const translation = req.nextUrl.searchParams.get("translation");
   if (!csid) {
-    return NextResponse.json({ error: "csid is required" }, { status: 400 });
+    return NextResponse.json({ error: "csid is required" }, { status: 400, headers: cors });
   }
 
   const resolved = await resolveCSID(csid);
@@ -31,7 +37,8 @@ export async function GET(req: NextRequest) {
         const refNorm = `${resolved.chunk.csid.split(":")[2]}:${resolved.chunk.locator}`;
         proxied = await fetchVerse(refNorm, translation);
       }
-      return NextResponse.json({
+      return NextResponse.json(
+        {
         kind: "chunk",
         csid,
         body: proxied?.text || resolved.chunk.body,
@@ -50,26 +57,34 @@ export async function GET(req: NextRequest) {
         },
         attribution: proxied?.attribution ?? null,
         degradationNotice: proxied?.degradationNotice ?? null,
-      });
+        },
+        { headers: cors },
+      );
     }
     case "proxy": {
       const verse = await fetchVerse(resolved.refNorm, resolved.translation);
-      return NextResponse.json({
-        kind: "proxy",
-        csid,
-        body: verse.text,
-        attribution: verse.attribution,
-        degradationNotice: verse.degradationNotice,
-      });
+      return NextResponse.json(
+        {
+          kind: "proxy",
+          csid,
+          body: verse.text,
+          attribution: verse.attribution,
+          degradationNotice: verse.degradationNotice,
+        },
+        { headers: cors },
+      );
     }
     case "describe-only":
-      return NextResponse.json({ kind: "describe-only", csid, note: resolved.note });
+      return NextResponse.json(
+        { kind: "describe-only", csid, note: resolved.note },
+        { headers: cors },
+      );
     case "unresolved":
       // This should never trigger. Fire the alert path.
       console.error(`[GATE-6-ALERT] unresolved CSID reached render: ${csid} (${resolved.reason})`);
       return NextResponse.json(
         { kind: "unresolved", csid, reason: resolved.reason },
-        { status: 404 },
+        { status: 404, headers: cors },
       );
   }
 }
