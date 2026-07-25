@@ -64,9 +64,21 @@ export function CitationChip({
   onResolved: (source: ResolvedSource) => void;
 }) {
   const [errored, setErrored] = useState(false);
-  const { apiBaseUrl, translation } = useConcordConfig();
+  const { apiBaseUrl, translation, engine } = useConcordConfig();
 
   const handleClick = async () => {
+    if (engine === "client") {
+      // Static build: Gate 6 resolution runs in the browser.
+      try {
+        const { clientResolve } = await import("../../lib/concord/browser/engine");
+        const data = (await clientResolve(csid)) as ResolvedSource;
+        if (data.kind === "unresolved") setErrored(true);
+        onResolved(data);
+      } catch {
+        setErrored(true);
+      }
+      return;
+    }
     try {
       const params = new URLSearchParams({ csid });
       if (translation) params.set("translation", translation);

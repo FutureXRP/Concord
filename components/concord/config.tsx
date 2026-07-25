@@ -18,17 +18,24 @@ export interface ConcordConfig {
   apiBaseUrl: string;
   /** Preferred reading translation for scripture chips (Tier C proxied). */
   translation?: string;
+  /**
+   * "server" (default): components call the /api/concord routes.
+   * "client": the whole standalone pipeline runs in the browser against
+   * fetched static corpus assets - no server at all (GitHub Pages build).
+   */
+  engine?: "server" | "client";
 }
 
-const ConcordConfigContext = createContext<ConcordConfig>({ apiBaseUrl: "" });
+const ConcordConfigContext = createContext<ConcordConfig>({ apiBaseUrl: "", engine: "server" });
 
 export function ConcordProvider({
   apiBaseUrl = "",
   translation,
+  engine = "server",
   children,
 }: Partial<ConcordConfig> & { children: React.ReactNode }) {
   return (
-    <ConcordConfigContext.Provider value={{ apiBaseUrl, translation }}>
+    <ConcordConfigContext.Provider value={{ apiBaseUrl, translation, engine }}>
       {children}
     </ConcordConfigContext.Provider>
   );
