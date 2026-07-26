@@ -260,6 +260,11 @@ export async function clientVerses(refText: string): Promise<ClientVerses> {
 // ---------- Discovery (mirrors /api/concord/find) ----------
 
 export interface ClientFindResult {
+  situation: {
+    id: string;
+    label: string;
+    passages: Array<{ ref: string; why: string }>;
+  } | null;
   saying: {
     saying: string;
     verdict: "not-in-scripture" | "misattributed" | "paraphrase";
@@ -274,7 +279,16 @@ export interface ClientFindResult {
 
 export async function clientFind(query: string): Promise<ClientFindResult> {
   const { suggestPassages } = await import("../discover");
+  const { matchSituation, contentTerms } = await import("../situations");
   const idx = await loadBrowserIndex();
+
+  // 1. Life situations first: "scripture to preach a funeral" is about the
+  //    funeral, and the curated index answers it far better than any
+  //    keyword match could.
+  const sit = matchSituation(query);
+  const situation = sit
+    ? { id: sit.id, label: sit.label, passages: sit.passages }
+    : null;
 
   const s = matchSaying(query);
   const saying = s
@@ -299,11 +313,20 @@ export async function clientFind(query: string): Promise<ClientFindResult> {
       (r.endVerse !== null ? `-${r.endVerse}` : ""),
   }));
 
-  const hits = idx.sparse(query, 80);
-  const passages = suggestPassages(hits, 6);
+  // 2. BM25 fallback searches the CONTENT of the request, not its
+  //    packaging: intent words are stripped, then theological synonyms
+  //    expand what remains.
+  const terms = contentTerms(query);
+  const contentQuery = terms.length > 0 ? terms.join(" ") : query;
+  const { expansions } = expandQuery(contentQuery);
+  const hits = idx.sparse([contentQuery, ...expansions].join(" "), 80);
+  // With a curated situation on top, the keyword list is a secondary
+  // "more matches" section — keep it short.
+  const passages = suggestPassages(hits, situation ? 3 : 6);
   const doctrine = matchDoctrine(query);
 
   return {
+    situation,
     saying,
     direct,
     invalid: pre.invalid,
