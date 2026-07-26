@@ -1,0 +1,847 @@
+{
+ "attribution": "Engravings by Gustave Doré (1832-1883) for La Grande Bible de Tours (1866), from the Doré Bible Gallery (1879). Public domain. Digitized by Project Gutenberg (#8710). Passage assignments follow the plates' printed KJV citations where present; plates marked curated were identified editorially from the KJV text quoted beneath them.",
+ "plates": [
+  {
+   "n": "001",
+   "title": "The Creation of Eve",
+   "display": "Genesis 2:18, 21-24",
+   "matches": [
+    "gen:2"
+   ]
+  },
+  {
+   "n": "002",
+   "title": "The Expulsion from the Garden",
+   "display": "Genesis 3:22-24",
+   "matches": [
+    "gen:3"
+   ]
+  },
+  {
+   "n": "003",
+   "title": "The Murder of Abel",
+   "display": "Genesis 4:1-16",
+   "matches": [
+    "gen:4"
+   ]
+  },
+  {
+   "n": "004",
+   "title": "The Deluge",
+   "display": "Genesis 7:11-24",
+   "matches": [
+    "gen:7"
+   ]
+  },
+  {
+   "n": "005",
+   "title": "Noah Cursing Ham",
+   "display": "Genesis 9:18-27",
+   "matches": [
+    "gen:9"
+   ]
+  },
+  {
+   "n": "006",
+   "title": "The Tower of Babel",
+   "display": "Genesis 11:1-9",
+   "matches": [
+    "gen:11"
+   ]
+  },
+  {
+   "n": "007",
+   "title": "Abraham Entertains Three Strangers",
+   "display": "Genesis 18:1-8",
+   "matches": [
+    "gen:18",
+    "heb:13"
+   ]
+  },
+  {
+   "n": "008",
+   "title": "The Destruction of Sodom",
+   "display": "Genesis 19:15-28",
+   "matches": [
+    "gen:19"
+   ]
+  },
+  {
+   "n": "009",
+   "title": "The Expulsion of Hagar",
+   "display": "Genesis 21:1-14",
+   "matches": [
+    "gen:21"
+   ]
+  },
+  {
+   "n": "010",
+   "title": "Hagar in the Wilderness",
+   "display": "Genesis 21:14-21",
+   "matches": [
+    "gen:21"
+   ]
+  },
+  {
+   "n": "011",
+   "title": "The Trial of the Faith of Abraham",
+   "display": "Genesis 22:1-14",
+   "matches": [
+    "gen:22"
+   ],
+   "curated": true
+  },
+  {
+   "n": "012",
+   "title": "The Burial of Sarah",
+   "display": "Genesis 23",
+   "matches": [
+    "gen:23"
+   ]
+  },
+  {
+   "n": "013",
+   "title": "Eliezer and Rebekah",
+   "display": "Genesis 24:9-28",
+   "matches": [
+    "gen:24"
+   ]
+  },
+  {
+   "n": "014",
+   "title": "Isaac Blessing Jacob",
+   "display": "Genesis 27:1-29",
+   "matches": [
+    "gen:27"
+   ]
+  },
+  {
+   "n": "015",
+   "title": "Jacob Tending the Flocks of Laban",
+   "display": "Genesis 29:9-30",
+   "matches": [
+    "gen:29"
+   ]
+  },
+  {
+   "n": "016",
+   "title": "Joseph Sold into Egypt",
+   "display": "Genesis 37:12-36",
+   "matches": [
+    "gen:37"
+   ],
+   "curated": true
+  },
+  {
+   "n": "017",
+   "title": "Joseph Interpreting Pharaoh's Dream",
+   "display": "Genesis 41:1-36",
+   "matches": [
+    "gen:41"
+   ]
+  },
+  {
+   "n": "018",
+   "title": "Joseph Making Himself Known to His Brethren",
+   "display": "Genesis 45:1-18",
+   "matches": [
+    "gen:45"
+   ]
+  },
+  {
+   "n": "019",
+   "title": "Moses in the Bulrushes",
+   "display": "Exodus 2:1-10",
+   "matches": [
+    "exod:2"
+   ]
+  },
+  {
+   "n": "020",
+   "title": "The War Against Gibeon",
+   "display": "Joshua 10:5-20",
+   "matches": [
+    "josh:10"
+   ]
+  },
+  {
+   "n": "021",
+   "title": "Sisera Slain by Jael",
+   "display": "Judges 4:2-22",
+   "matches": [
+    "judg:4"
+   ]
+  },
+  {
+   "n": "022",
+   "title": "Deborah's Song of Triumph",
+   "display": "Judges 5:2-5, 24-31",
+   "matches": [
+    "judg:5"
+   ]
+  },
+  {
+   "n": "023",
+   "title": "Jephthah Met by His Daughter",
+   "display": "Judges 11:29-34",
+   "matches": [
+    "judg:11"
+   ]
+  },
+  {
+   "n": "024",
+   "title": "Jephthah's Daughter and Her Companions",
+   "display": "Judges 11:35-40",
+   "matches": [
+    "judg:11"
+   ]
+  },
+  {
+   "n": "025",
+   "title": "Samson Slaying the Lion",
+   "display": "Judges 14:5-6",
+   "matches": [
+    "judg:14"
+   ]
+  },
+  {
+   "n": "026",
+   "title": "Samson and Delilah",
+   "display": "Judges 16:4-20",
+   "matches": [
+    "judg:16"
+   ]
+  },
+  {
+   "n": "027",
+   "title": "The Death of Samson",
+   "display": "Judges 16:21-31",
+   "matches": [
+    "judg:16"
+   ]
+  },
+  {
+   "n": "028",
+   "title": "Naomi and Her Daughters in Law",
+   "display": "Ruth 1:1-19",
+   "matches": [
+    "ruth:1"
+   ]
+  },
+  {
+   "n": "029",
+   "title": "Ruth and Boaz",
+   "display": "Ruth 2:1-17",
+   "matches": [
+    "ruth:2"
+   ]
+  },
+  {
+   "n": "030",
+   "title": "The Return of the Ark",
+   "display": "1 Samuel 6:1-15",
+   "matches": [
+    "1sam:6"
+   ]
+  },
+  {
+   "n": "031",
+   "title": "Saul and David",
+   "display": "1 Samuel 18:6-16",
+   "matches": [
+    "1sam:18"
+   ],
+   "curated": true
+  },
+  {
+   "n": "032",
+   "title": "David Sparing Saul",
+   "display": "1 Samuel 24",
+   "matches": [
+    "1sam:24",
+    "1sam:26"
+   ],
+   "curated": true
+  },
+  {
+   "n": "033",
+   "title": "Death of Saul",
+   "display": "1 Samuel 31",
+   "matches": [
+    "1sam:31"
+   ]
+  },
+  {
+   "n": "034",
+   "title": "The Death of Absalom",
+   "display": "2 Samuel 18:1-17",
+   "matches": [
+    "2sam:18"
+   ]
+  },
+  {
+   "n": "035",
+   "title": "David Mourning over Absalom",
+   "display": "2 Samuel 18:33-19:4",
+   "matches": [
+    "2sam:18",
+    "2sam:19"
+   ],
+   "curated": true
+  },
+  {
+   "n": "036",
+   "title": "Solomon",
+   "display": "2 Samuel 5:13-16",
+   "matches": [
+    "2sam:5",
+    "1kgs:4"
+   ]
+  },
+  {
+   "n": "037",
+   "title": "The Judgment of Solomon",
+   "display": "1 Kings 3:16-28",
+   "matches": [
+    "1kgs:3"
+   ]
+  },
+  {
+   "n": "038",
+   "title": "The Cedars Destined for the Temple",
+   "display": "1 Kings 5",
+   "matches": [
+    "1kgs:5"
+   ]
+  },
+  {
+   "n": "039",
+   "title": "The Prophet Slain by a Lion",
+   "display": "1 Kings 13:11-30",
+   "matches": [
+    "1kgs:13"
+   ],
+   "curated": true
+  },
+  {
+   "n": "040",
+   "title": "Elijah Destroying the Messengers of Ahaziah",
+   "display": "2 Kings 1:2-17",
+   "matches": [
+    "2kgs:1"
+   ]
+  },
+  {
+   "n": "041",
+   "title": "Elijah's Ascent in a Chariot of Fire",
+   "display": "2 Kings 2:1-14",
+   "matches": [
+    "2kgs:2"
+   ],
+   "curated": true
+  },
+  {
+   "n": "042",
+   "title": "The Death of Jezebel",
+   "display": "2 Kings 9:30-37",
+   "matches": [
+    "2kgs:9"
+   ]
+  },
+  {
+   "n": "043",
+   "title": "Esther Confounding Haman",
+   "display": "Esther 7",
+   "matches": [
+    "esth:7"
+   ]
+  },
+  {
+   "n": "044",
+   "title": "Isaiah",
+   "display": "The book of Isaiah",
+   "matches": [
+    "isa:*"
+   ],
+   "curated": true
+  },
+  {
+   "n": "045",
+   "title": "Destruction of Sennacherib's Host",
+   "display": "2 Kings 19:32-37",
+   "matches": [
+    "2kgs:19",
+    "isa:37"
+   ]
+  },
+  {
+   "n": "046",
+   "title": "Baruch",
+   "display": "Jeremiah 36:1-4",
+   "matches": [
+    "jer:36"
+   ]
+  },
+  {
+   "n": "047",
+   "title": "Ezekiel Prophesying",
+   "display": "The book of Ezekiel",
+   "matches": [
+    "ezek:*"
+   ],
+   "curated": true
+  },
+  {
+   "n": "048",
+   "title": "The Vision of Ezekiel",
+   "display": "Ezekiel 37:1-14",
+   "matches": [
+    "ezek:37"
+   ]
+  },
+  {
+   "n": "049",
+   "title": "Daniel",
+   "display": "The book of Daniel",
+   "matches": [
+    "dan:*"
+   ],
+   "curated": true
+  },
+  {
+   "n": "050",
+   "title": "The Fiery Furnace",
+   "display": "Daniel 3:8-27",
+   "matches": [
+    "dan:3"
+   ]
+  },
+  {
+   "n": "051",
+   "title": "Belshazzar's Feast",
+   "display": "Daniel 5",
+   "matches": [
+    "dan:5"
+   ]
+  },
+  {
+   "n": "052",
+   "title": "Daniel in the Lions' Den",
+   "display": "Daniel 6",
+   "matches": [
+    "dan:6"
+   ]
+  },
+  {
+   "n": "053",
+   "title": "The Prophet Amos",
+   "display": "The book of Amos",
+   "matches": [
+    "amos:*"
+   ],
+   "curated": true
+  },
+  {
+   "n": "054",
+   "title": "Jonah Calling Nineveh to Repentance",
+   "display": "Jonah 3",
+   "matches": [
+    "jonah:3"
+   ]
+  },
+  {
+   "n": "055",
+   "title": "Daniel Confounding the Priests of Bel",
+   "display": "Bel and the Dragon (Apocrypha)",
+   "matches": [],
+   "curated": true
+  },
+  {
+   "n": "056",
+   "title": "Heliodorus Punished in the Temple",
+   "display": "2 Maccabees 3:23-29",
+   "matches": [
+    "2macc:3"
+   ]
+  },
+  {
+   "n": "057",
+   "title": "The Nativity",
+   "display": "Luke 2:1-20",
+   "matches": [
+    "luke:2"
+   ]
+  },
+  {
+   "n": "058",
+   "title": "The Star in the East",
+   "display": "Matthew 2:1-10",
+   "matches": [
+    "matt:2"
+   ],
+   "curated": true
+  },
+  {
+   "n": "059",
+   "title": "The Flight into Egypt",
+   "display": "Matthew 2:13-15",
+   "matches": [
+    "matt:2"
+   ]
+  },
+  {
+   "n": "060",
+   "title": "The Massacre of the Innocents",
+   "display": "Matthew 2:16-18",
+   "matches": [
+    "matt:2"
+   ]
+  },
+  {
+   "n": "061",
+   "title": "Jesus Questioning the Doctors",
+   "display": "Luke 2:41-52",
+   "matches": [
+    "luke:2"
+   ]
+  },
+  {
+   "n": "062",
+   "title": "Jesus Healing the Sick",
+   "display": "Matthew 4:23-25",
+   "matches": [
+    "matt:4",
+    "luke:4"
+   ],
+   "curated": true
+  },
+  {
+   "n": "063",
+   "title": "Sermon on the Mount",
+   "display": "Matthew 5",
+   "matches": [
+    "matt:5"
+   ],
+   "curated": true
+  },
+  {
+   "n": "064",
+   "title": "Christ Stilling the Tempest",
+   "display": "Matthew 8:23-27",
+   "matches": [
+    "matt:8",
+    "mark:4"
+   ]
+  },
+  {
+   "n": "065",
+   "title": "The Dumb Man Possessed",
+   "display": "Matthew 9:32-34",
+   "matches": [
+    "matt:9"
+   ]
+  },
+  {
+   "n": "066",
+   "title": "Christ in the Synagogue",
+   "display": "Matthew 13:53-58",
+   "matches": [
+    "matt:13"
+   ]
+  },
+  {
+   "n": "067",
+   "title": "The Disciples Plucking Corn on the Sabbath",
+   "display": "Mark 2:23-28",
+   "matches": [
+    "mark:2"
+   ]
+  },
+  {
+   "n": "068",
+   "title": "Jesus Walking on the Water",
+   "display": "Mark 6:46-52",
+   "matches": [
+    "mark:6",
+    "matt:14"
+   ]
+  },
+  {
+   "n": "069",
+   "title": "Christ's Entry into Jerusalem",
+   "display": "Matthew 21:1-11",
+   "matches": [
+    "matt:21",
+    "mark:11",
+    "luke:19",
+    "john:12"
+   ],
+   "curated": true
+  },
+  {
+   "n": "070",
+   "title": "Jesus and the Tribute Money",
+   "display": "Mark 12:13-17",
+   "matches": [
+    "mark:12"
+   ]
+  },
+  {
+   "n": "071",
+   "title": "The Widow's Mite",
+   "display": "Mark 12:41-44",
+   "matches": [
+    "mark:12",
+    "luke:21"
+   ]
+  },
+  {
+   "n": "072",
+   "title": "Raising of the Daughter of Jairus",
+   "display": "Mark 5:22-43",
+   "matches": [
+    "mark:5",
+    "luke:8"
+   ]
+  },
+  {
+   "n": "073",
+   "title": "The Good Samaritan",
+   "display": "Luke 10:29-37",
+   "matches": [
+    "luke:10"
+   ]
+  },
+  {
+   "n": "074",
+   "title": "Arrival of the Samaritan at the Inn",
+   "display": "Luke 10:33-34",
+   "matches": [
+    "luke:10"
+   ]
+  },
+  {
+   "n": "075",
+   "title": "The Prodigal Son",
+   "display": "Luke 15:11-32",
+   "matches": [
+    "luke:15"
+   ]
+  },
+  {
+   "n": "076",
+   "title": "Lazarus and the Rich Man",
+   "display": "Luke 16:19-31",
+   "matches": [
+    "luke:16"
+   ]
+  },
+  {
+   "n": "077",
+   "title": "The Pharisee and the Publican",
+   "display": "Luke 18:9-14",
+   "matches": [
+    "luke:18"
+   ]
+  },
+  {
+   "n": "078",
+   "title": "Jesus and the Woman of Samaria",
+   "display": "John 4:5-30",
+   "matches": [
+    "john:4"
+   ]
+  },
+  {
+   "n": "079",
+   "title": "Jesus and the Woman Taken in Adultery",
+   "display": "John 8:1-11",
+   "matches": [
+    "john:8"
+   ],
+   "curated": true
+  },
+  {
+   "n": "080",
+   "title": "The Resurrection of Lazarus",
+   "display": "John 11:30-45",
+   "matches": [
+    "john:11"
+   ]
+  },
+  {
+   "n": "081",
+   "title": "Mary Magdalene",
+   "display": "Luke 8:1-3",
+   "matches": [
+    "luke:8"
+   ],
+   "curated": true
+  },
+  {
+   "n": "082",
+   "title": "The Last Supper",
+   "display": "Matthew 26:17-30",
+   "matches": [
+    "matt:26",
+    "mark:14",
+    "luke:22",
+    "john:13"
+   ]
+  },
+  {
+   "n": "083",
+   "title": "The Agony in the Garden",
+   "display": "Luke 22:39-46",
+   "matches": [
+    "luke:22"
+   ]
+  },
+  {
+   "n": "084",
+   "title": "Prayer of Jesus in the Garden of Olives",
+   "display": "Matthew 26:36-46",
+   "matches": [
+    "matt:26"
+   ]
+  },
+  {
+   "n": "085",
+   "title": "The Betrayal",
+   "display": "Mark 14:41-50",
+   "matches": [
+    "mark:14"
+   ]
+  },
+  {
+   "n": "086",
+   "title": "Christ Fainting Under the Cross",
+   "display": "Matthew 27:31-32",
+   "matches": [
+    "matt:27"
+   ],
+   "curated": true
+  },
+  {
+   "n": "087",
+   "title": "The Flagellation",
+   "display": "Matthew 27:26",
+   "matches": [
+    "matt:27",
+    "john:19"
+   ]
+  },
+  {
+   "n": "088",
+   "title": "The Crucifixion",
+   "display": "Matthew 27:33-38",
+   "matches": [
+    "matt:27",
+    "mark:15",
+    "luke:23",
+    "john:19"
+   ],
+   "curated": true
+  },
+  {
+   "n": "089",
+   "title": "Close of the Crucifixion",
+   "display": "Matthew 27:45-56",
+   "matches": [
+    "matt:27"
+   ]
+  },
+  {
+   "n": "090",
+   "title": "The Burial of Jesus",
+   "display": "Matthew 27:57-61",
+   "matches": [
+    "matt:27"
+   ]
+  },
+  {
+   "n": "091",
+   "title": "The Angel at the Sepulchre",
+   "display": "Matthew 28:1-8",
+   "matches": [
+    "matt:28"
+   ]
+  },
+  {
+   "n": "092",
+   "title": "The Journey to Emmaus",
+   "display": "Luke 24:13-35",
+   "matches": [
+    "luke:24"
+   ]
+  },
+  {
+   "n": "093",
+   "title": "The Ascension",
+   "display": "Luke 24:50-53",
+   "matches": [
+    "luke:24",
+    "acts:1"
+   ]
+  },
+  {
+   "n": "094",
+   "title": "The Martyrdom of St. Stephen",
+   "display": "Acts 7:54-60",
+   "matches": [
+    "acts:7"
+   ],
+   "curated": true
+  },
+  {
+   "n": "095",
+   "title": "Saul's Conversion",
+   "display": "Acts 9:1-20",
+   "matches": [
+    "acts:9"
+   ]
+  },
+  {
+   "n": "096",
+   "title": "The Deliverance of St. Peter",
+   "display": "Acts 12:1-11",
+   "matches": [
+    "acts:12"
+   ]
+  },
+  {
+   "n": "097",
+   "title": "Paul at Ephesus",
+   "display": "Acts 19:1-20",
+   "matches": [
+    "acts:19"
+   ],
+   "curated": true
+  },
+  {
+   "n": "098",
+   "title": "Paul Menaced by the Jews",
+   "display": "Acts 21:27-40",
+   "matches": [
+    "acts:21"
+   ]
+  },
+  {
+   "n": "099",
+   "title": "Paul's Shipwreck",
+   "display": "Acts 27:14-44",
+   "matches": [
+    "acts:27"
+   ],
+   "curated": true
+  },
+  {
+   "n": "100",
+   "title": "Death on the Pale Horse",
+   "display": "Revelation 6:7-8",
+   "matches": [
+    "rev:6"
+   ]
+  }
+ ]
+}
