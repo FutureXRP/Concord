@@ -209,3 +209,105 @@ export async function clientResolve(csid: string): Promise<ClientResolved> {
     },
   };
 }
+
+// ---------- Verse lookup (mirrors /api/concord/verses) ----------
+
+export interface ClientVerses {
+  ok: boolean;
+  reason?: string;
+  label?: string;
+  refNorm?: string;
+  canonNote?: string | null;
+  verses: Array<{ refNorm: string; verse: string; text: string }>;
+  truncated: number;
+}
+
+const VERSES_MAX = 10;
+
+export async function clientVerses(refText: string): Promise<ClientVerses> {
+  const { validateReference } = await import("../canon");
+  const v = validateReference(refText);
+  if (!v.ok) {
+    return { ok: false, reason: v.reason, verses: [], truncated: 0 };
+  }
+  const idx = await loadBrowserIndex();
+  const label =
+    `${v.ref.bookName} ${v.ref.chapter}` +
+    (v.ref.verse !== null ? `:${v.ref.verse}` : "") +
+    (v.ref.endVerse !== null
+      ? `-${v.ref.endChapter && v.ref.endChapter !== v.ref.chapter ? v.ref.endChapter + ":" : ""}${v.ref.endVerse}`
+      : v.ref.verse === null && v.ref.endChapter !== null
+        ? `-${v.ref.endChapter}`
+        : "");
+  const all = expandRefToVerses(v.ref);
+  const verses: ClientVerses["verses"] = [];
+  for (const vn of all.slice(0, VERSES_MAX)) {
+    const chunk = idx.getChunk(`scripture:kjv:${vn}`);
+    if (!chunk) continue;
+    const [, cv] = vn.split(":");
+    verses.push({ refNorm: vn, verse: cv.replace(".", ":"), text: chunk.body_norm });
+  }
+  return {
+    ok: true,
+    label,
+    refNorm: v.ref.refNorm,
+    canonNote: v.canonNote ?? null,
+    verses,
+    truncated: all.length > VERSES_MAX ? all.length - VERSES_MAX : 0,
+  };
+}
+
+// ---------- Discovery (mirrors /api/concord/find) ----------
+
+export interface ClientFindResult {
+  saying: {
+    saying: string;
+    verdict: "not-in-scripture" | "misattributed" | "paraphrase";
+    origin: string;
+    nearest: Array<{ refNorm: string; text: string }>;
+  } | null;
+  direct: Array<{ label: string }>;
+  invalid: Array<{ input: string; reason: string }>;
+  passages: import("../discover").PassageSuggestion[];
+  doctrineLabel: string | null;
+}
+
+export async function clientFind(query: string): Promise<ClientFindResult> {
+  const { suggestPassages } = await import("../discover");
+  const idx = await loadBrowserIndex();
+
+  const s = matchSaying(query);
+  const saying = s
+    ? {
+        saying: s.saying,
+        verdict: s.verdict,
+        origin: s.origin,
+        nearest: s.nearest
+          .map((refNorm) => {
+            const chunk = idx.getChunk(`scripture:kjv:${refNorm}`);
+            return chunk ? { refNorm, text: chunk.body_norm } : null;
+          })
+          .filter((x): x is { refNorm: string; text: string } => x !== null),
+      }
+    : null;
+
+  const pre = preflightReferences(query);
+  const direct = pre.valid.map((r) => ({
+    label:
+      `${r.bookName} ${r.chapter}` +
+      (r.verse !== null ? `:${r.verse}` : "") +
+      (r.endVerse !== null ? `-${r.endVerse}` : ""),
+  }));
+
+  const hits = idx.sparse(query, 80);
+  const passages = suggestPassages(hits, 6);
+  const doctrine = matchDoctrine(query);
+
+  return {
+    saying,
+    direct,
+    invalid: pre.invalid,
+    passages,
+    doctrineLabel: doctrine?.label ?? null,
+  };
+}

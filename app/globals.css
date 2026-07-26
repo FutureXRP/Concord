@@ -275,3 +275,232 @@ body {
   color: var(--muted);
   text-align: center;
 }
+
+/* ── Atlas (Places & Art) ─────────────────────────────────────────────── */
+
+.atlas-map {
+  width: 100%;
+  max-height: 480px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  font-family: inherit;
+}
+
+.atlas-note {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+
+.atlas-attribution {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0.4rem 0 0;
+}
+
+.art-panel {
+  margin-top: 1.6rem;
+}
+
+.art-panel h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0 0 0.8rem;
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.art-grid figure {
+  margin: 0;
+}
+
+.art-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.art-grid figcaption {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+.art-grid figcaption strong {
+  color: var(--ink);
+}
+
+.art-more {
+  font: inherit;
+  font-size: 0.82rem;
+  margin-top: 0.9rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* ── Find / suggestions / reference checker ───────────────────────────── */
+
+.suggestion-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.8rem;
+}
+
+.verse-block {
+  margin: 0.6rem 0 0.2rem;
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+  font-style: italic;
+}
+
+.verse-block p {
+  margin: 0 0 0.45rem;
+  line-height: 1.7;
+}
+
+.verse-block sup {
+  color: var(--accent);
+  font-style: normal;
+  margin-right: 0.2rem;
+}
+
+.suggestion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.suggestion-actions button {
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.suggestion-actions button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.checker-input {
+  width: 100%;
+  font: inherit;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.checker-results {
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0;
+}
+
+.checker-results li {
+  padding: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.checker-ok {
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.checker-bad {
+  color: var(--error);
+  font-weight: 600;
+}
+
+.saying-origin {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.saying-nearest {
+  margin: 0.4rem 0;
+  line-height: 1.65;
+}
+
+/* ── Memorize ─────────────────────────────────────────────────────────── */
+
+.practice-text {
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.practice-text sup {
+  color: var(--accent);
+  margin-right: 0.25rem;
+}
+
+.masked-word {
+  border-bottom: 1.5px solid var(--line);
+  color: transparent;
+  user-select: none;
+  letter-spacing: 1px;
+}
+
+.deck-list {
+  margin-top: 1.6rem;
+}
+
+.deck-list h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.deck-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.45rem 0.1rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.92rem;
+}
+
+.deck-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.deck-meta button {
+  font: inherit;
+  border: none;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+}
