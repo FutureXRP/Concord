@@ -1,9 +1,13 @@
-import { AcrossTraditions } from "@/components/concord/AcrossTraditions";
 import { ConcordProvider } from "@/components/concord/config";
+import { DemoShell } from "@/components/concord/DemoShell";
 
 /**
- * Demo study shell. In PassageLab, "Across Traditions" is a tab alongside
- * the existing study tabs (spec §11), available on Free.
+ * Demo shell for the four free layers Concord contributes to PassageLab:
+ *
+ *   Across Traditions — sourced comparative answers (spec §11)
+ *   Find a passage    — deterministic discovery over all 31,102 KJV verses
+ *   Places & Art      — the biblical atlas + Doré engravings
+ *   Memorize          — SM-2 spaced-repetition scripture memorization
  *
  * NEXT_PUBLIC_CONCORD_STATIC=1 (the GitHub Pages build) runs the whole
  * pipeline in the visitor's browser - no server, no keys, no cost.
@@ -14,22 +18,14 @@ export default function StudyPage() {
   return (
     <main className="shell">
       <header className="study-header">
-        <h1>Across Traditions</h1>
-        <p className="passage">Romans 3:21&ndash;26 &middot; PassageLab study</p>
+        <h1>Concord</h1>
+        <p className="passage">
+          The Comparative Traditions Layer &middot; every claim traceable to a source
+        </p>
       </header>
 
-      <div className="tabs">
-        <button className="tab" disabled>
-          Study
-        </button>
-        <button className="tab" disabled>
-          Notes
-        </button>
-        <button className="tab active">Across Traditions</button>
-      </div>
-
       <ConcordProvider engine={isStaticBuild ? "client" : "server"}>
-        <AcrossTraditions initialQuery="What do the traditions teach about justification in Romans 3:21-26?" />
+        <DemoShell initialQuery="What do the traditions teach about justification in Romans 3:21-26?" />
       </ConcordProvider>
 
       <p className="footer-note">
