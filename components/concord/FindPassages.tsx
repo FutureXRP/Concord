@@ -95,6 +95,54 @@ function SuggestionCard({
   );
 }
 
+function SituationRow({
+  p,
+  onOpenAtlas,
+  onMemorize,
+}: {
+  p: { ref: string; why: string };
+  onOpenAtlas: (ref: string) => void;
+  onMemorize: (ref: string) => void;
+}) {
+  const [verses, setVerses] = useState<ClientVerses | null>(null);
+  const [memorized, setMemorized] = useState(false);
+
+  return (
+    <div className="situation-row">
+      <div className="situation-row-head">
+        <button
+          type="button"
+          className="chip"
+          onClick={() => (verses ? setVerses(null) : clientVerses(p.ref).then(setVerses))}
+          title="Tap to read"
+        >
+          {p.ref}
+        </button>
+        <span className="situation-why">{p.why}</span>
+      </div>
+      {verses && (
+        <>
+          <VerseBlock data={verses} />
+          <div className="suggestion-actions">
+            <button type="button" onClick={() => onOpenAtlas(p.ref)}>
+              Places &amp; art →
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                onMemorize(p.ref);
+                setMemorized(true);
+              }}
+            >
+              {memorized ? "✓ In your memory deck" : "Memorize"}
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function RefChecker() {
   const [text, setText] = useState("");
   const [refs, setRefs] = useState<ScannedRef[] | null>(null);
@@ -199,6 +247,18 @@ export function FindPassages({
         Deterministic search across all 31,102 verses, entirely in your browser — nothing
         generated, nothing sent anywhere.
       </p>
+
+      {result?.situation && (
+        <div className="section-card consensus situation-card">
+          <h3>{result.situation.label}</h3>
+          <p className="atlas-note" style={{ margin: "0 0 10px" }}>
+            A curated selection for this situation — every text opens verbatim from the KJV.
+          </p>
+          {result.situation.passages.map((p) => (
+            <SituationRow key={p.ref} p={p} onOpenAtlas={onOpenAtlas} onMemorize={onMemorize} />
+          ))}
+        </div>
+      )}
 
       {result?.saying && (
         <div className="section-card consensus">

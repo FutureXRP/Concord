@@ -1,0 +1,413 @@
+{
+  "comment": "Life-situation index for the passage finder. Each entry maps the questions people actually type (a funeral to preach, a wedding, anxiety, grief) to an editorially curated list of passages. The 'why' lines are navigational descriptions only; the scripture text itself is always served verbatim from the corpus and every ref is validated against the canon by tests.",
+  "situations": [
+    {
+      "id": "funeral",
+      "label": "For a funeral or memorial",
+      "match": ["funeral", "memorial service", "graveside", "burial", "bury", "eulogy", "died", "passed away", "loss of a loved one", "lost my", "grieving", "grief", "mourning", "mourn", "bereaved", "bereavement", "comfort those who mourn", "death of"],
+      "passages": [
+        { "ref": "Psalm 23", "why": "The shepherd psalm; the valley of the shadow of death." },
+        { "ref": "John 11:21-27", "why": "Jesus to Martha at Lazarus's tomb: I am the resurrection and the life." },
+        { "ref": "John 14:1-6", "why": "Let not your heart be troubled; in my Father's house are many mansions." },
+        { "ref": "1 Thessalonians 4:13-18", "why": "Sorrow not as others which have no hope; the dead in Christ shall rise." },
+        { "ref": "1 Corinthians 15:50-58", "why": "Death is swallowed up in victory; O death, where is thy sting?" },
+        { "ref": "Revelation 21:1-7", "why": "God shall wipe away all tears; no more death, neither sorrow." },
+        { "ref": "Romans 8:31-39", "why": "Neither death nor life can separate us from the love of God." },
+        { "ref": "Psalm 90:1-12", "why": "Moses' prayer: teach us to number our days." },
+        { "ref": "2 Corinthians 4:16-18", "why": "Outward man perishes, inward man renewed; an eternal weight of glory." },
+        { "ref": "Isaiah 25:6-9", "why": "He will swallow up death in victory and wipe away tears." }
+      ]
+    },
+    {
+      "id": "wedding",
+      "label": "For a wedding or marriage",
+      "match": ["wedding", "marriage", "getting married", "marry", "bride", "groom", "anniversary", "engaged", "engagement", "spouse", "husband", "wife"],
+      "passages": [
+        { "ref": "1 Corinthians 13:1-13", "why": "The love chapter: charity suffereth long, and is kind." },
+        { "ref": "Genesis 2:18-25", "why": "The first marriage: bone of my bones, flesh of my flesh." },
+        { "ref": "Ecclesiastes 4:9-12", "why": "Two are better than one; a threefold cord is not quickly broken." },
+        { "ref": "Ephesians 5:21-33", "why": "Husbands and wives; the mystery compared to Christ and the church." },
+        { "ref": "Song of Solomon 8:6-7", "why": "Set me as a seal upon thine heart; many waters cannot quench love." },
+        { "ref": "Ruth 1:16-17", "why": "Whither thou goest, I will go; thy people shall be my people." },
+        { "ref": "Colossians 3:12-17", "why": "Put on charity, which is the bond of perfectness." },
+        { "ref": "Mark 10:6-9", "why": "What therefore God hath joined together, let not man put asunder." }
+      ]
+    },
+    {
+      "id": "anxiety",
+      "label": "For anxiety and worry",
+      "match": ["anxious", "anxiety", "worried", "worry", "worrying", "stressed", "stress", "overwhelmed", "panic", "cant sleep", "restless"],
+      "passages": [
+        { "ref": "Philippians 4:4-9", "why": "Be careful for nothing; the peace of God shall keep your hearts." },
+        { "ref": "Matthew 6:25-34", "why": "Take no thought for the morrow; consider the lilies." },
+        { "ref": "1 Peter 5:6-11", "why": "Casting all your care upon him; for he careth for you." },
+        { "ref": "Psalm 46:1-11", "why": "God is our refuge and strength; be still, and know that I am God." },
+        { "ref": "Isaiah 41:10-13", "why": "Fear thou not; for I am with thee; I will uphold thee." },
+        { "ref": "John 14:27", "why": "Peace I leave with you; let not your heart be troubled." },
+        { "ref": "2 Timothy 1:7", "why": "God hath not given us the spirit of fear, but of power and love." }
+      ]
+    },
+    {
+      "id": "fear",
+      "label": "For fear",
+      "match": ["afraid", "fear", "fearful", "scared", "terrified", "frightened", "courage"],
+      "passages": [
+        { "ref": "Psalm 27:1-6", "why": "The LORD is my light and my salvation; whom shall I fear?" },
+        { "ref": "Psalm 91", "why": "The whole psalm of refuge under the Almighty's shadow." },
+        { "ref": "Isaiah 41:10-13", "why": "Fear thou not; for I am with thee." },
+        { "ref": "Joshua 1:9", "why": "Be strong and of a good courage; the LORD thy God is with thee." },
+        { "ref": "Psalm 56:3-4", "why": "What time I am afraid, I will trust in thee." },
+        { "ref": "2 Timothy 1:7", "why": "Not the spirit of fear, but of power, love, and a sound mind." },
+        { "ref": "1 John 4:18", "why": "Perfect love casteth out fear." }
+      ]
+    },
+    {
+      "id": "despair",
+      "label": "For depression and despair",
+      "match": ["depressed", "depression", "despair", "hopeless", "no hope", "darkness", "downcast", "broken", "brokenhearted", "cant go on", "want to give up"],
+      "passages": [
+        { "ref": "Psalm 42:1-11", "why": "Why art thou cast down, O my soul? hope thou in God." },
+        { "ref": "Psalm 34:17-19", "why": "The LORD is nigh unto them that are of a broken heart." },
+        { "ref": "Psalm 40:1-3", "why": "He brought me up out of an horrible pit and set my feet upon a rock." },
+        { "ref": "Isaiah 40:28-31", "why": "They that wait upon the LORD shall renew their strength." },
+        { "ref": "Lamentations 3:19-26", "why": "His compassions fail not; they are new every morning." },
+        { "ref": "1 Kings 19:1-12", "why": "Elijah under the juniper tree; God meets him in a still small voice." },
+        { "ref": "2 Corinthians 1:3-7", "why": "The God of all comfort, who comforteth us in all our tribulation." },
+        { "ref": "Matthew 11:28-30", "why": "Come unto me, all ye that labour and are heavy laden." }
+      ]
+    },
+    {
+      "id": "guilt",
+      "label": "For guilt and God's forgiveness",
+      "match": ["guilt", "guilty", "shame", "ashamed", "forgive me", "can god forgive", "my sin", "failed god", "confess", "confession"],
+      "passages": [
+        { "ref": "Psalm 51:1-17", "why": "David's confession: create in me a clean heart, O God." },
+        { "ref": "1 John 1:5-9", "why": "If we confess our sins, he is faithful and just to forgive." },
+        { "ref": "Psalm 103:8-14", "why": "As far as the east is from the west, so far hath he removed our transgressions." },
+        { "ref": "Isaiah 1:18", "why": "Though your sins be as scarlet, they shall be as white as snow." },
+        { "ref": "Micah 7:18-19", "why": "Thou wilt cast all their sins into the depths of the sea." },
+        { "ref": "Romans 8:1-4", "why": "No condemnation to them which are in Christ Jesus." },
+        { "ref": "Isaiah 43:25", "why": "I am he that blotteth out thy transgressions for mine own sake." }
+      ]
+    },
+    {
+      "id": "forgiving-others",
+      "label": "For forgiving someone",
+      "match": ["forgive", "forgiving", "forgiveness", "resentment", "bitterness", "bitter", "hurt me", "wronged me", "betrayed", "reconcile", "reconciliation", "grudge"],
+      "passages": [
+        { "ref": "Matthew 18:21-35", "why": "Seventy times seven; the parable of the unmerciful servant." },
+        { "ref": "Ephesians 4:31-32", "why": "Forgiving one another, even as God for Christ's sake hath forgiven you." },
+        { "ref": "Colossians 3:12-14", "why": "Forbearing one another, and forgiving one another." },
+        { "ref": "Matthew 5:43-48", "why": "Love your enemies; pray for them which despitefully use you." },
+        { "ref": "Romans 12:17-21", "why": "Recompense to no man evil for evil; overcome evil with good." },
+        { "ref": "Luke 6:27-38", "why": "Forgive, and ye shall be forgiven; good measure, pressed down." },
+        { "ref": "Genesis 50:15-21", "why": "Joseph forgives his brothers: ye thought evil, God meant it unto good." }
+      ]
+    },
+    {
+      "id": "anger",
+      "label": "For anger",
+      "match": ["angry", "anger", "temper", "rage", "furious", "lose my temper"],
+      "passages": [
+        { "ref": "James 1:19-21", "why": "Slow to speak, slow to wrath; man's wrath worketh not God's righteousness." },
+        { "ref": "Ephesians 4:26-32", "why": "Be ye angry, and sin not; let not the sun go down upon your wrath." },
+        { "ref": "Proverbs 15:1", "why": "A soft answer turneth away wrath." },
+        { "ref": "Proverbs 29:11", "why": "A fool uttereth all his mind; a wise man keepeth it in." },
+        { "ref": "Psalm 37:7-9", "why": "Cease from anger, and forsake wrath; fret not thyself." }
+      ]
+    },
+    {
+      "id": "illness",
+      "label": "For sickness and healing",
+      "match": ["sick", "sickness", "illness", "ill", "disease", "healing", "heal", "surgery", "hospital", "cancer", "diagnosis", "chronic pain"],
+      "passages": [
+        { "ref": "Psalm 103:1-5", "why": "Who forgiveth all thine iniquities; who healeth all thy diseases." },
+        { "ref": "James 5:13-16", "why": "The prayer of faith; pray one for another, that ye may be healed." },
+        { "ref": "Psalm 41:1-3", "why": "The LORD will strengthen him upon the bed of languishing." },
+        { "ref": "Matthew 8:5-13", "why": "The centurion's faith: speak the word only, and my servant shall be healed." },
+        { "ref": "2 Corinthians 12:7-10", "why": "The thorn in the flesh; my grace is sufficient for thee." },
+        { "ref": "Isaiah 53:4-5", "why": "Surely he hath borne our griefs; with his stripes we are healed." }
+      ]
+    },
+    {
+      "id": "facing-death",
+      "label": "For facing death",
+      "match": ["dying", "terminal", "end of life", "facing death", "hospice", "not long to live", "afraid to die", "afraid of death"],
+      "passages": [
+        { "ref": "Psalm 23", "why": "Though I walk through the valley of the shadow of death, thou art with me." },
+        { "ref": "John 14:1-6", "why": "I go to prepare a place for you." },
+        { "ref": "2 Corinthians 5:1-9", "why": "A building of God, an house not made with hands, eternal in the heavens." },
+        { "ref": "Philippians 1:20-24", "why": "To live is Christ, and to die is gain." },
+        { "ref": "Psalm 116:15", "why": "Precious in the sight of the LORD is the death of his saints." },
+        { "ref": "Romans 14:7-9", "why": "Whether we live or die, we are the Lord's." },
+        { "ref": "2 Timothy 4:6-8", "why": "I have fought a good fight; henceforth a crown of righteousness." }
+      ]
+    },
+    {
+      "id": "loneliness",
+      "label": "For loneliness",
+      "match": ["lonely", "loneliness", "alone", "isolated", "abandoned", "no one cares", "forgotten"],
+      "passages": [
+        { "ref": "Psalm 25:16-18", "why": "Turn thee unto me; for I am desolate and afflicted." },
+        { "ref": "Deuteronomy 31:6-8", "why": "He will not fail thee, nor forsake thee." },
+        { "ref": "Psalm 68:5-6", "why": "God setteth the solitary in families; a father of the fatherless." },
+        { "ref": "Isaiah 49:14-16", "why": "I have graven thee upon the palms of my hands." },
+        { "ref": "Psalm 139:1-12", "why": "Whither shall I flee from thy presence? Thou art there." },
+        { "ref": "Matthew 28:18-20", "why": "Lo, I am with you alway, even unto the end of the world." },
+        { "ref": "Hebrews 13:5-6", "why": "I will never leave thee, nor forsake thee." }
+      ]
+    },
+    {
+      "id": "doubt",
+      "label": "For doubt",
+      "match": ["doubt", "doubting", "doubts", "unsure of my faith", "questioning god", "struggling to believe", "is god real", "losing my faith"],
+      "passages": [
+        { "ref": "Mark 9:14-27", "why": "Lord, I believe; help thou mine unbelief." },
+        { "ref": "John 20:24-29", "why": "Thomas: blessed are they that have not seen, and yet have believed." },
+        { "ref": "Psalm 73:21-26", "why": "Asaph's honest struggle; whom have I in heaven but thee?" },
+        { "ref": "Matthew 11:1-6", "why": "John the Baptist's question from prison, and Jesus' answer." },
+        { "ref": "Jude 1:20-23", "why": "And of some have compassion, making a difference." }
+      ]
+    },
+    {
+      "id": "temptation",
+      "label": "For temptation and struggle with sin",
+      "match": ["tempted", "temptation", "addiction", "addicted", "struggling with sin", "keep sinning", "cant stop", "lust", "habit"],
+      "passages": [
+        { "ref": "1 Corinthians 10:12-13", "why": "God will with the temptation also make a way to escape." },
+        { "ref": "James 1:12-15", "why": "Blessed is the man that endureth temptation; how sin conceives." },
+        { "ref": "Matthew 4:1-11", "why": "Jesus tempted in the wilderness answers with scripture." },
+        { "ref": "Hebrews 4:14-16", "why": "Tempted like as we are, yet without sin; come boldly to the throne." },
+        { "ref": "Romans 6:11-14", "why": "Sin shall not have dominion over you." },
+        { "ref": "Psalm 119:9-11", "why": "Thy word have I hid in mine heart, that I might not sin." },
+        { "ref": "Galatians 5:16-25", "why": "Walk in the Spirit; the fruit of the Spirit." }
+      ]
+    },
+    {
+      "id": "gratitude",
+      "label": "For gratitude and thanksgiving",
+      "match": ["grateful", "gratitude", "thankful", "thanksgiving", "give thanks", "praise", "celebrate", "celebration"],
+      "passages": [
+        { "ref": "Psalm 100", "why": "Enter into his gates with thanksgiving." },
+        { "ref": "Psalm 103:1-5", "why": "Bless the LORD, O my soul, and forget not all his benefits." },
+        { "ref": "1 Thessalonians 5:16-18", "why": "In every thing give thanks." },
+        { "ref": "Philippians 4:4-7", "why": "Rejoice in the Lord alway; with thanksgiving let your requests be known." },
+        { "ref": "Psalm 136:1-9", "why": "For his mercy endureth for ever." },
+        { "ref": "Colossians 3:15-17", "why": "Be ye thankful; singing with grace in your hearts." }
+      ]
+    },
+    {
+      "id": "money",
+      "label": "For money, provision, and generosity",
+      "match": ["money", "finances", "financial", "provision", "provide", "debt", "poverty", "poor", "giving", "generosity", "tithe", "tithing", "afford", "bills"],
+      "passages": [
+        { "ref": "Matthew 6:19-24", "why": "Lay not up treasures upon earth; ye cannot serve God and mammon." },
+        { "ref": "Philippians 4:10-13", "why": "I have learned, in whatsoever state I am, therewith to be content." },
+        { "ref": "Proverbs 3:9-10", "why": "Honour the LORD with thy substance." },
+        { "ref": "2 Corinthians 9:6-11", "why": "God loveth a cheerful giver." },
+        { "ref": "1 Timothy 6:6-10", "why": "Godliness with contentment is great gain; the love of money." },
+        { "ref": "Malachi 3:8-10", "why": "Bring ye all the tithes into the storehouse; prove me now herewith." },
+        { "ref": "Hebrews 13:5", "why": "Be content with such things as ye have." }
+      ]
+    },
+    {
+      "id": "work",
+      "label": "For work and calling",
+      "match": ["work", "job", "career", "calling", "vocation", "labor", "workplace", "unemployed", "lost my job"],
+      "passages": [
+        { "ref": "Colossians 3:23-24", "why": "Whatsoever ye do, do it heartily, as to the Lord." },
+        { "ref": "Ecclesiastes 3:9-13", "why": "That every man should enjoy the good of all his labour." },
+        { "ref": "Psalm 90:16-17", "why": "Establish thou the work of our hands upon us." },
+        { "ref": "Proverbs 16:3", "why": "Commit thy works unto the LORD." },
+        { "ref": "1 Corinthians 15:58", "why": "Your labour is not in vain in the Lord." },
+        { "ref": "Genesis 2:15", "why": "Work before the fall: to dress the garden and to keep it." }
+      ]
+    },
+    {
+      "id": "parenting",
+      "label": "For parents and children",
+      "match": ["parenting", "parent", "raising children", "my children", "my kids", "children", "kids", "new baby", "baby dedication", "prodigal"],
+      "passages": [
+        { "ref": "Deuteronomy 6:4-9", "why": "Teach them diligently unto thy children." },
+        { "ref": "Proverbs 22:6", "why": "Train up a child in the way he should go." },
+        { "ref": "Psalm 127:1-5", "why": "Children are an heritage of the LORD." },
+        { "ref": "Ephesians 6:1-4", "why": "Children and fathers; nurture and admonition of the Lord." },
+        { "ref": "2 Timothy 1:5", "why": "The unfeigned faith of a grandmother and mother passed on." },
+        { "ref": "Psalm 78:1-8", "why": "That the generation to come might know them." },
+        { "ref": "Luke 15:11-32", "why": "The prodigal son and the father who ran." }
+      ]
+    },
+    {
+      "id": "salvation",
+      "label": "For understanding salvation",
+      "match": ["saved", "salvation", "become a christian", "becoming a christian", "accept jesus", "new believer", "the gospel", "born again", "eternal life", "how to be saved"],
+      "passages": [
+        { "ref": "John 3:1-21", "why": "Nicodemus: ye must be born again; God so loved the world." },
+        { "ref": "Romans 10:8-13", "why": "Whosoever shall call upon the name of the Lord shall be saved." },
+        { "ref": "Ephesians 2:1-10", "why": "By grace are ye saved through faith; not of works." },
+        { "ref": "Romans 3:21-26", "why": "The righteousness of God by faith of Jesus Christ." },
+        { "ref": "Titus 3:3-7", "why": "Not by works of righteousness, but according to his mercy he saved us." },
+        { "ref": "Acts 16:25-34", "why": "The Philippian jailer: what must I do to be saved?" },
+        { "ref": "John 1:9-13", "why": "To them gave he power to become the sons of God." }
+      ]
+    },
+    {
+      "id": "baptism-prep",
+      "label": "Before a baptism",
+      "match": ["getting baptized", "being baptized", "before my baptism", "baptism service", "baptize"],
+      "passages": [
+        { "ref": "Romans 6:1-11", "why": "Buried with him by baptism into death; raised to walk in newness of life." },
+        { "ref": "Acts 2:37-42", "why": "Repent, and be baptized every one of you." },
+        { "ref": "Matthew 28:18-20", "why": "The great commission: baptizing them in the name of the Father, Son, Spirit." },
+        { "ref": "Galatians 3:26-27", "why": "As many of you as have been baptized into Christ have put on Christ." },
+        { "ref": "Colossians 2:11-14", "why": "Buried with him in baptism, risen through the faith of the operation of God." },
+        { "ref": "1 Peter 3:18-22", "why": "The like figure whereunto even baptism doth also now save us." }
+      ]
+    },
+    {
+      "id": "communion-prep",
+      "label": "Before communion",
+      "match": ["taking communion", "before communion", "communion service", "the lords table", "lords supper preparation"],
+      "passages": [
+        { "ref": "1 Corinthians 11:23-32", "why": "The words of institution, and examining oneself." },
+        { "ref": "Matthew 26:26-29", "why": "Take, eat; this is my body." },
+        { "ref": "John 6:32-40", "why": "I am the bread of life." },
+        { "ref": "Isaiah 53:4-6", "why": "The LORD hath laid on him the iniquity of us all." },
+        { "ref": "1 Corinthians 10:16-17", "why": "The communion of the body and blood of Christ; one bread, one body." }
+      ]
+    },
+    {
+      "id": "justice",
+      "label": "For justice and the oppressed",
+      "match": ["justice", "injustice", "oppressed", "oppression", "poor and needy", "orphan", "widow", "refugee", "stranger"],
+      "passages": [
+        { "ref": "Micah 6:6-8", "why": "Do justly, love mercy, walk humbly with thy God." },
+        { "ref": "Isaiah 1:15-17", "why": "Seek judgment, relieve the oppressed, plead for the widow." },
+        { "ref": "Amos 5:21-24", "why": "Let judgment run down as waters, and righteousness as a mighty stream." },
+        { "ref": "Psalm 146:5-10", "why": "The LORD executeth judgment for the oppressed." },
+        { "ref": "Isaiah 58:6-11", "why": "The fast God has chosen: to loose the bands of wickedness." },
+        { "ref": "Luke 4:16-21", "why": "Jesus' Nazareth manifesto: good tidings to the poor." }
+      ]
+    },
+    {
+      "id": "hope",
+      "label": "For hope and encouragement",
+      "match": ["hope", "encouragement", "encourage", "discouraged", "discouragement", "future", "promise"],
+      "passages": [
+        { "ref": "Romans 15:13", "why": "The God of hope fill you with all joy and peace in believing." },
+        { "ref": "Jeremiah 29:11-13", "why": "Thoughts of peace, and not of evil, to give you an expected end." },
+        { "ref": "Romans 5:1-5", "why": "Tribulation worketh patience; and hope maketh not ashamed." },
+        { "ref": "Isaiah 40:28-31", "why": "They shall mount up with wings as eagles." },
+        { "ref": "Psalm 121", "why": "I will lift up mine eyes unto the hills." },
+        { "ref": "Hebrews 6:17-19", "why": "Hope as an anchor of the soul, both sure and stedfast." }
+      ]
+    },
+    {
+      "id": "perseverance",
+      "label": "For strength and perseverance",
+      "match": ["strength", "persevere", "perseverance", "endurance", "endure", "weary", "tired", "exhausted", "burned out", "burnout", "keep going"],
+      "passages": [
+        { "ref": "Isaiah 40:28-31", "why": "They that wait upon the LORD shall renew their strength." },
+        { "ref": "Philippians 4:11-13", "why": "I can do all things through Christ which strengtheneth me." },
+        { "ref": "2 Corinthians 4:7-10", "why": "Troubled on every side, yet not distressed; cast down, but not destroyed." },
+        { "ref": "Hebrews 12:1-3", "why": "Run with patience the race that is set before us." },
+        { "ref": "Galatians 6:9", "why": "Let us not be weary in well doing; in due season we shall reap." },
+        { "ref": "James 1:2-4", "why": "The trying of your faith worketh patience." },
+        { "ref": "Matthew 11:28-30", "why": "Come unto me, and I will give you rest." }
+      ]
+    },
+    {
+      "id": "guidance",
+      "label": "For guidance and decisions",
+      "match": ["decision", "decisions", "guidance", "direction", "what should i do", "discernment", "gods will", "which way", "crossroads", "choose", "choice"],
+      "passages": [
+        { "ref": "Proverbs 3:5-6", "why": "Trust in the LORD with all thine heart; he shall direct thy paths." },
+        { "ref": "James 1:5-8", "why": "If any of you lack wisdom, let him ask of God." },
+        { "ref": "Psalm 32:8", "why": "I will instruct thee and teach thee in the way which thou shalt go." },
+        { "ref": "Psalm 25:4-5", "why": "Shew me thy ways, O LORD; teach me thy paths." },
+        { "ref": "Isaiah 30:19-21", "why": "This is the way, walk ye in it." },
+        { "ref": "Romans 12:1-2", "why": "Be transformed, that ye may prove what is that good will of God." },
+        { "ref": "Psalm 119:105", "why": "Thy word is a lamp unto my feet, and a light unto my path." }
+      ]
+    },
+    {
+      "id": "christmas",
+      "label": "For Christmas and Advent",
+      "match": ["christmas", "advent", "nativity", "birth of jesus", "birth of christ"],
+      "passages": [
+        { "ref": "Luke 2:1-20", "why": "The birth in Bethlehem; shepherds and the angelic host." },
+        { "ref": "Isaiah 9:2-7", "why": "For unto us a child is born; Wonderful, Counsellor, Prince of Peace." },
+        { "ref": "Matthew 1:18-25", "why": "Joseph's dream; thou shalt call his name JESUS." },
+        { "ref": "John 1:1-14", "why": "The Word was made flesh, and dwelt among us." },
+        { "ref": "Isaiah 7:14", "why": "A virgin shall conceive; Immanuel, God with us." },
+        { "ref": "Micah 5:2-5", "why": "But thou, Bethlehem Ephratah — the ruler out of little Bethlehem." },
+        { "ref": "Titus 2:11-14", "why": "The grace of God that bringeth salvation hath appeared." }
+      ]
+    },
+    {
+      "id": "easter",
+      "label": "For Easter and the resurrection",
+      "match": ["easter", "resurrection sunday", "he is risen", "empty tomb", "risen"],
+      "passages": [
+        { "ref": "Matthew 28:1-10", "why": "He is not here: for he is risen, as he said." },
+        { "ref": "John 20:1-18", "why": "Mary Magdalene at the tomb; the first witness." },
+        { "ref": "1 Corinthians 15:1-11", "why": "The gospel delivered first of all: died, buried, rose again." },
+        { "ref": "1 Corinthians 15:20-26", "why": "Christ the firstfruits of them that slept." },
+        { "ref": "Luke 24:1-12", "why": "Why seek ye the living among the dead?" },
+        { "ref": "1 Peter 1:3-9", "why": "A lively hope by the resurrection of Jesus Christ." }
+      ]
+    },
+    {
+      "id": "good-friday",
+      "label": "For Good Friday and the cross",
+      "match": ["good friday", "crucifixion", "the cross", "passion week", "holy week", "calvary", "golgotha"],
+      "passages": [
+        { "ref": "Isaiah 52:13-53:12", "why": "The suffering servant: wounded for our transgressions." },
+        { "ref": "John 19:16-30", "why": "The crucifixion; it is finished." },
+        { "ref": "Matthew 27:27-54", "why": "From the mocking to the centurion's confession." },
+        { "ref": "Psalm 22:1-18", "why": "My God, my God, why hast thou forsaken me?" },
+        { "ref": "Philippians 2:5-11", "why": "Obedient unto death, even the death of the cross." },
+        { "ref": "1 Peter 2:21-25", "why": "By whose stripes ye were healed." },
+        { "ref": "Hebrews 10:11-14", "why": "One sacrifice for sins for ever." }
+      ]
+    },
+    {
+      "id": "persecution",
+      "label": "For persecution and mistreatment",
+      "match": ["persecuted", "persecution", "mistreated", "bullied", "mocked for my faith", "enemies", "slandered", "falsely accused"],
+      "passages": [
+        { "ref": "Matthew 5:10-12", "why": "Blessed are they which are persecuted for righteousness' sake." },
+        { "ref": "Romans 12:14-21", "why": "Bless them which persecute you; overcome evil with good." },
+        { "ref": "1 Peter 4:12-16", "why": "Think it not strange concerning the fiery trial." },
+        { "ref": "Psalm 37:1-9", "why": "Fret not thyself because of evildoers; commit thy way unto the LORD." },
+        { "ref": "2 Thessalonians 1:4-7", "why": "Patience and faith in all your persecutions." }
+      ]
+    },
+    {
+      "id": "aging",
+      "label": "For growing older",
+      "match": ["growing old", "aging", "old age", "retirement", "retiring", "getting older", "gray hairs"],
+      "passages": [
+        { "ref": "Isaiah 46:3-4", "why": "Even to your old age I am he; even to hoar hairs will I carry you." },
+        { "ref": "Psalm 92:12-15", "why": "They shall still bring forth fruit in old age." },
+        { "ref": "Psalm 71:14-18", "why": "Now also when I am old, O God, forsake me not." },
+        { "ref": "Proverbs 16:31", "why": "The hoary head is a crown of glory." },
+        { "ref": "2 Corinthians 4:16-18", "why": "Though our outward man perish, the inward man is renewed day by day." },
+        { "ref": "Psalm 90:12", "why": "So teach us to number our days." }
+      ]
+    },
+    {
+      "id": "new-beginning",
+      "label": "For a new year or new beginning",
+      "match": ["new year", "fresh start", "new beginning", "starting over", "moving", "new home", "new chapter", "graduation", "graduating"],
+      "passages": [
+        { "ref": "Lamentations 3:22-24", "why": "His mercies are new every morning." },
+        { "ref": "Isaiah 43:16-21", "why": "Behold, I will do a new thing." },
+        { "ref": "2 Corinthians 5:16-17", "why": "If any man be in Christ, he is a new creature." },
+        { "ref": "Philippians 3:12-14", "why": "Forgetting those things which are behind, I press toward the mark." },
+        { "ref": "Psalm 90:12", "why": "Teach us to number our days." },
+        { "ref": "Revelation 21:5", "why": "Behold, I make all things new." }
+      ]
+    }
+  ]
+}

@@ -155,11 +155,15 @@ async function buildPlaces() {
     if (verses.length === 0) continue; // extra-biblical-only place
     const idx = places.length;
     // Strip homonym counters for display ("Bethlehem 1" → "Bethlehem").
+    // The 5th element is the place's total verse-mention count across the
+    // whole Bible — the importance signal the map uses to pick which
+    // context labels to show at a given zoom.
     places.push([
       name.replace(/ \d+$/, ""),
       Math.round(coords.lat * 1e4) / 1e4,
       Math.round(coords.lon * 1e4) / 1e4,
       Math.round((coords.score / 1000) * 100) / 100,
+      verses.length,
     ]);
     for (const vn of verses) {
       (byVerse[vn] ??= []).push(idx);
